@@ -39,7 +39,10 @@ if( seconds > 58){
 if( minutes > 58){
 	fill(255,0,0);
 	textSize(200);
+	push()
+	textAlign(RIGHT);
 	text(hours,90, 250)
+	pop()
 }
 /*
 textSize(100);
