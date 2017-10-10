@@ -1,5 +1,3 @@
-// (c) 2016-17 Fathom Information Design BY-NC-SA
-// https://creativecommons.org/licenses/by-nc-sa/4.0
 
 
 function setup() {
