@@ -35,13 +35,14 @@ function setup() {
     textAlign(LEFT);
 var explaintxt = 10;
 textSize(explaintxt);
-text("a look at the demographics of community with", xcanvas/2+5, 17);
-text("regards to multiracial people", xcanvas/2+5, 17+explaintxt);
+text("a look at the demographics of community with", xcanvas/2+5, 27);
+text("regards to multiracial people", xcanvas/2+5, 27+explaintxt);
+text("an average county demographic for the highest population of", xcanvas/2+5, 37+(explaintxt*3.25));
 
 textAlign(RIGHT);
 textSize(20);
 textStyle(BOLD);
-text("Multiracial Statistics", xcanvas/2, 27);
+text("Multiracial Statistics", xcanvas/2, 37);
 textStyle(NORMAL);
 
   //explaination text
@@ -199,10 +200,26 @@ function gotData(data) {
 	textAlign(CENTER);
 	var titpos = xcanvas/2;
 	textSize(20);
-	text('Average County Demographic for the Highest Population of',titpos,70);
+	//text('Average County Demographic for the Highest Population of Half White & Half Asians',titpos,70);
 		textStyle(BOLD);
-	text('Half White & Half Asians',titpos,90)
+	//text('Half White & Half Asians',titpos,90)
 	pop();
+
+	push();
+
+	    textAlign(LEFT);
+	var explaintxt = 10;
+	textSize(explaintxt);
+	textStyle(NORMAL);
+	//text("Average County Demographic for the Highest Population", xcanvas/2+5, 27+(explaintxt*2));
+	//text("regards to multiracial people", xcanvas/2+5, 17+explaintxt);
+
+textAlign(RIGHT);
+textSize(20);
+textStyle(BOLD);
+text("White / Asian", xcanvas/2, 37+(explaintxt*3));
+textStyle(NORMAL);
+pop();
 
 	noStroke();
 	fill(33,30,92,55);
@@ -245,29 +262,10 @@ function gotData(data) {
 function mousePressed() {
   if (value == 0) {
     value = 255;
+
   } else {
     value = 0;
   }
-}
-
-function changeBG() {
-  noStroke();
-fill(33,30,92,25);
-  strokeWeight(3);
-  var d = 50
-  var r = 200;
-  //for (var i = 1; i <= 4; i++) {
-  	var r = 225-d*i;
-  	beginShape();
-  	vertex(centerx-r/2, centery-(r*h));
-  	vertex(centerx+r/2, centery-(r*h));
-  	vertex(centerx + r, centery);
-  	vertex(centerx+r/2, centery+(r*h));
-  	vertex(centerx-r/2, centery+(r*h));
-  	vertex(centerx - r, centery);
-  	vertex(centerx-r/2, centery-(r*h));
-  	endShape();
-//}
 }
 
 
