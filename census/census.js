@@ -35,14 +35,14 @@ function setup() {
     textAlign(LEFT);
 var explaintxt = 10;
 textSize(explaintxt);
-text("a look at the demographics of community with", xcanvas/2+5, 27);
-text("regards to multiracial people", xcanvas/2+5, 27+explaintxt);
-text("an average county demographic for the highest population of", xcanvas/2+5, 37+(explaintxt*3.25));
+text("a look at the demographics of community with", xcanvas/2+5, 37);
+text("regards to multiracial people", xcanvas/2+5, 37+explaintxt);
+text("an average county demographic for the highest population of", xcanvas/2+5, 47+(explaintxt*3.5));
 
 textAlign(RIGHT);
 textSize(20);
 textStyle(BOLD);
-text("Multiracial Statistics", xcanvas/2, 37);
+text("Multiracial Statistics", xcanvas/2, 47);
 textStyle(NORMAL);
 
   //explaination text
@@ -217,7 +217,7 @@ function gotData(data) {
 textAlign(RIGHT);
 textSize(20);
 textStyle(BOLD);
-text("White / Asian", xcanvas/2, 37+(explaintxt*3));
+text("White / Asian", xcanvas/2, 47+(explaintxt*3.5));
 textStyle(NORMAL);
 pop();
 
