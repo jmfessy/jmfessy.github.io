@@ -1,3 +1,5 @@
+// -----------------------------GLOBAL VARIABLES FOR SETUP & DATA--------------------------------
+
 var user_key = 'ac34b99eefc48a3f26f41ba60f1f119f76f7fe73';
 //white matrix: black(0), american indian(1), asian (2), pacific islander (3), other
 //var whitematrix = 'P0080011,P0080012,P0080013,P0080014,P0080015';
@@ -27,15 +29,18 @@ var h = (Math.sqrt(3))/2;
 
   var aswh = "Asian Whites "; var asbl = "Black Asians "; var ashs = "Asian Hispanics "; var asind = "Indian Asians "; var aspi = "Asian Pacific Islander ";
   var multiracialMatrix = ["Asian Whites ", asbl, ashs, asind, aspi]
-  var chosenMR = multiracialMatrix[0];
+  var mr = 0;
+  var chosenMR = multiracialMatrix[mr];
 
   // severity
-  var mostL = "most likely";
-  var leastL = "least likely";
-  var medL = "on median";
-
+  var mostL = " most likely"; var leastL = " least likely"; var medL = " on average likely";
+  var chooseSeverity = [mostL, medL, leastL]
   // other words that are needed
-  var are = "are ";
+  var are = "are";
+
+// ------------------------------SETUP---------------------------------
+ 
+var cs = 1; // choose severity setup
 
 function setup() {
   createCanvas(xcanvas, ycanvas);
@@ -56,20 +61,16 @@ function setup() {
   var linespace = 19;
   fill(color('#FEA034'));
   text(chosenMR, topicLinex, topicLiney);
-  text(mostL, topicLinex+((chosenMR.length)+(are.length))*linespace, topicLiney);
+  text(chooseSeverity[cs], topicLinex+((chosenMR.length)+(are.length))*linespace, topicLiney);
 
   fill(255);
   text("are ", topicLinex+((chosenMR.length)*linespace), topicLiney);
-  text("to live in these", topicLinex+((chosenMR.length)+(are.length)+mostL.length)*linespace, topicLiney);
+  text("to live in these", topicLinex+((chosenMR.length)+(are.length)+(chooseSeverity[cs].length))*linespace, topicLiney);
   text("counties", topicLinex, topicLiney+explaintxt);
   pop();
 }
 
-//map will go here
-
-
-// ------------------------------FUNCTIONS SEPERATE FROM INITIAL SETUP FOR LOOKS---------------------------------
-
+// ------------------------------FUNCTIONS for DATA---------------------------------
 
 var user_key = 'ac34b99eefc48a3f26f41ba60f1f119f76f7fe73';
 //white matrix: black(0), american indian(1), asian (2), pacific islander (3), other
@@ -109,9 +110,22 @@ function gotData(data) {
 
 }
 
+// ------------------------------GLOBAL VARIABLES FOR LOOKS---------------------------------
+
+
 var smlltxtsz = 22;
+
+// colors
+var asiancolor = "#E0231E", hispaniccolor = "#E07A22", blackcolor ="#E0A12E", pacificcolor = "#E0C634", indiancolor = "#2D62BA", whitecolor = "#387BBF";
+var gray = [asiancolor, hispaniccolor, blackcolor, pacificcolor, indiancolor, whitecolor];
+var highasian = [];
+
+// data! 
 var asianper = .2; hispanicper = .3; blackper = .1, indianper = .02, pacificper = .08, whiteper = .3;
 var angles = [ asianper*360, hispanicper*360, blackper*360, indianper*360, pacificper*360, whiteper*360];
+var multiracialNumber = ["203905", "100535", "109235", "43,125"];
+
+// ------------------------------SETUP FOR LOOKS---------------------------------
 
 function draw(){
   pieChart(400, angles);
@@ -128,6 +142,7 @@ function draw(){
   text("Median",xcanvas*xover-boxwidth-20+(boxwidth/2), ycanvas*yover+(boxheight/2)+(3.25));
   text("Least",xcanvas*xover+(boxwidth/2), ycanvas*yover+(boxheight/2)+(3.25));
   pop();
+
 }
 
 // 500 should be the larger outer circle when you hover over!!!
@@ -139,39 +154,34 @@ function pieChart(diameter, data) {
   var topy = ycanvas/1.5; bottomy = topy*2.2;
   var smallcircle = 300;
   for (var i = 0; i < data.length; i++) {
-    var gray = map(i, 0, data.length, 0, 255);
-    fill(gray);
+    fill(color(gray[i]));
     arc(leftx/2, topy/2, diameter, diameter, lastAngle, lastAngle+radians(angles[i]));
     lastAngle += radians(angles[i]);
     fill(color('#152F48'));
     ellipse(leftx/2, topy/2, smallcircle, smallcircle);
   }
   for (var i = 0; i < data.length; i++) {
-    var gray = map(i, 0, data.length, 0, 255);
-    fill(gray);
+    fill(color(gray[i]));
     arc(leftx/2, bottomy/2, diameter, diameter, lastAngle, lastAngle+radians(angles[i]));
     lastAngle += radians(angles[i]);
     fill(color('#152F48'));
     ellipse(leftx/2, bottomy/2, smallcircle, smallcircle);
   }
   for (var i = 0; i < data.length; i++) {
-    var gray = map(i, 0, data.length, 0, 255);
-    fill(gray);
+    fill(color(gray[i]));
     arc(rightx/2, topy/2, diameter, diameter, lastAngle, lastAngle+radians(angles[i]));
     lastAngle += radians(angles[i]);
     fill(color('#152F48'));
     ellipse(rightx/2, topy/2, smallcircle, smallcircle);
   }
   for (var i = 0; i < data.length; i++) {
-    var gray = map(i, 0, data.length, 0, 255);
-    fill(gray);
+    fill(color(gray[i]));
     arc(rightx/2, bottomy/2, diameter, diameter, lastAngle, lastAngle+radians(angles[i]));
     lastAngle += radians(angles[i]);
     fill(color('#152F48'));
     ellipse(rightx/2, bottomy/2, smallcircle, smallcircle);
   }
 
-  var multiracialNumber = ["203905", "100535", "109235", "43,125"];
 
   push();
   var leftx = xcanvas/4; rightx = leftx*3;
@@ -204,6 +214,9 @@ function pieChart(diameter, data) {
   text("County 4"+" State", rightx, bottomy-(diameter/2)-yoffset);
   pop();
 }
+
+// ------------------------------FUNCTIONS for INTERACTION---------------------------------
+
 
 function mousePressed() {
 
