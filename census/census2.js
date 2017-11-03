@@ -71,8 +71,6 @@ function gotData(data) {
   var multiracialNumber = ["203905", "100535", "109235", "43,125"];
 
 
-var smlltxtsz = 22;
-
 var aswh = "Asian Whites "; var asbl = "Black Asians "; var ashs = "Asian Hispanics "; var asind = "Indian Asians "; var aspi = "Asian Pacific Islander ";
 var multiracialMatrix = [aswh, asbl, ashs, asind, aspi, "White Blacks ", "White Hispanics ", "White Indians ", "White Pacific Islanders ", "Black Hispanics ", "Black Indians ", "Black Pacific Islanders ", "Hispanic Indians ", "Hispanic Pacific Islanders ","Indian Pacific Islanders "]
 var mostL = " most likely"; var leastL = " least likely"; var medL = " on average likely"; var are = "are";
@@ -102,7 +100,7 @@ function draw(){
   rect(xcanvas*xover-boxwidth-20, ycanvas*yover, boxwidth, boxheight, 11);
   rect(xcanvas*xover-(boxwidth*2)-40, ycanvas*yover, boxwidth, boxheight, 11);
   
-  fill(color("#387BBF")); noStroke(); textSize(smlltxtsz); textStyle(BOLD); textAlign(CENTER,[CENTER]);
+  fill(color("#387BBF")); noStroke(); textSize(22); textStyle(BOLD); textAlign(CENTER,[CENTER]);
   text("Most",xcanvas*xover-(boxwidth*2)-40+(boxwidth/2), ycanvas*yover+(boxheight/2)+(3.25));
   text("Median",xcanvas*xover-boxwidth-20+(boxwidth/2), ycanvas*yover+(boxheight/2)+(3.25));
   text("Least",xcanvas*xover+(boxwidth/2), ycanvas*yover+(boxheight/2)+(3.25));
