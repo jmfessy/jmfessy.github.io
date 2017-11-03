@@ -53,7 +53,7 @@ function gotData(data) {
 // ------------------------------GLOBAL VARIABLES FOR LOOKS---------------------------------
 
   //var asianper = .2; hispanicper = .3; blackper = .1, indianper = .02, pacificper = .08, whiteper = .3;
-  raw_races = [.2,.3,.1,.02,.08,.3, .2,.3,.1,.02,.08,.3, .2,.3,.1,.02,.08,.3, .2,.3,.1,.02,.08,.3, .21,.3,.1,.01,.08,.3, .2,.3,.1,.02,.08,.3, .2,.3,.1,.02,.08,.3, .2,.3,.1,.02,.08,.3, .22,.3,.1,.01,.07,.3, .22,.28,.1,.02,.08,.3, .22,.28,.1,.02,.08,.3, .22,.28,.1,.02,.08,.3]
+  raw_races = [.31,.11,.006,.005,.091,.48  ,.429,.097,.028,.003,.095,.348,   .216,.126,.008,.006,.13,.514,   .08,.011,.001,.001,.50,.261,    .007,.019,.047,.002,.001,.923,  .004,.037,.005,.006,.001,.941,   .005,0.125,.008,.014,.001,.96,    .011,.056,.459,.004,.001,.514,.003,.053,.274,.009,.001,.695,    .003,.018,.477,.007,.001,.501,     .22,.28,.1,.02,.08,.3, .22,.28,.1,.02,.08,.3]
   //var race_raw_per = [asianper*100, hispanicper*100, blackper*100, indianper*100, pacificper*100, whiteper*100]
   var race_raw_per = []
   var angles = [];
@@ -64,19 +64,34 @@ function gotData(data) {
   }
   console.log(race_raw_per)
   for (var i = 0; i <=race_raw_per.length-1; i++) {
-    alone_race_per.push(race_raw_per[i].toString()+"%")
+    alone_race_per.push(Math.round(race_raw_per[i]).toString()+"%")
   }
 
   //var angles = [ asianper*360, hispanicper*360, blackper*360, indianper*360, pacificper*360, whiteper*360, ];
-  var multiracialNumber = ["1", "2", "3", "4","5","6","7","8","9","10","11","12"];
-  var multiper = ['1%', '2%', '3%', '4%','5%','6%','7%','8%','9%','10%','11%','12%',];
+  //var multiracialNumber = ["1", "2", "3", "4","5","6","7","8","9","10","11","12"];
+  var multiracialNumber = [];
+  populations = [3640, 47609, 8918, 4, 175, 65, 14, 134, 0, 0, 0, 0]
+  for (var i = 0; i <populations.length; i++) {
+    multiracialNumber.push((populations[i]).toString())
+  }
+
+  var multiper = [];
+  percentages = [25, 18, 30, 15, 1, 1, 1, 1, 0.0, 0.0, 0.0, 0.0]
+  for (var i = 0; i <percentages.length; i++) {
+    multiper.push(Math.round(percentages[i]).toString()+"%")
+  }
+
+  var totracialNumber = []
+  totalcitynumbers = [ 72029,992605,198449,88,115248,41409,9085,86364,1848,3150,6829,2335]
+  for (var i = 0; i <totalcitynumbers.length; i++) {
+    totracialNumber.push((totalcitynumbers[i]).toString()+"%")
+  }
 
 // names for the things
-var state1 = " CA", state2 = " CA", state3 = " NC", state4 = " GA";
-var state = [state1, state2, state3, state4, "state5","state6","state7","state8","state9","state10","state11","state12",];
+var state = ["HI", "HI", "HI", "HI", "PA", "MI", "MT", "PA", "CO", "GA", "GA", "GA"];
 
-var county = ["county1", "county2", "county3", "county4","county5","county6","county7","county8","county9","county10","county11","county12",];
-var alone_race = ["Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian",];
+var county = ["Kauai County", "Honolulu County", "Hawaii County", "Kalawao County", "Lycoming County", "Sanilac County", "Deer Lodge County", "Indiana County", "Cheyenne County", "Baker County","Clinch County", "Quitman County"];
+var alone_race = ["Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White",];
 //var alone_race_per = [race_raw_per[0].toString()+"%",race_raw_per[1].toString()+"%",race_raw_per[2].toString()+"%",race_raw_per[3].toString()+"%",race_raw_per[4].toString()+"%",race_raw_per[5].toString()+"%"]
 
 var aswh = "Asian Whites "; var asbl = "Black Asians "; var ashs = "Asian Hispanics "; var asind = "Indian Asians "; var aspi = "Asian Pacific Islander ";
@@ -158,20 +173,22 @@ function draw(){
     ellipse(leftx/2, topy/2, smallcircle, smallcircle);
   }
   lastAngle=0;
-  for (var i = 18; i <= 23; i++) {
+  for (var i = 6; i <= 11; i++) {
     fill(color(gray[i]));
     arc(leftx/2, bottomy/2, diameter, diameter, lastAngle, lastAngle+radians(angles[i+(24*cs)]));
     lastAngle += radians(angles[i+(24*cs)]);
     fill(color('#152F48'));
     ellipse(leftx/2, bottomy/2, smallcircle, smallcircle);
   }
-  for (var i = 6; i <= 11; i++) {
+  lastAngle=0;
+    for (var i = 18; i <= 23; i++) {
     fill(color(gray[i]));
     arc(rightx/2, topy/2, diameter, diameter, lastAngle, lastAngle+radians(angles[i+(24*cs)]));
     lastAngle += radians(angles[i+(24*cs)]);
     fill(color('#152F48'));
     ellipse(rightx/2, topy/2, smallcircle, smallcircle);
   }
+  lastAngle=0;
   for (var i = 12; i <=17; i++) {
     fill(color(gray[i]));
     arc(rightx/2, bottomy/2, diameter, diameter, lastAngle, lastAngle+radians(angles[i+(24*cs)]));
@@ -215,7 +232,7 @@ function draw(){
     if (rmag > smallcircle/2 && rmag < diameter/2 && theta < end[j-(24*cs)]+90 && theta > start[j-(24*cs)]+90){
     console.log(alone_race[j]); fill(color('#152F48')); ellipse(leftx, topy, smallcircle, smallcircle);
     textSize(txtsize);   textStyle(BOLD); fill(255); text(alone_race_per[j], leftx,topy-yoffset);
-    textSize(smlltxtsz); text(alone_race[j], leftx,topy+racoffset); 
+    textSize(smlltxtsz); text(alone_race[j], leftx,topy+racoffset); text(totracialNumber[1+(4*cs)],leftx,topy+boffset);
     }
 
   //upper right
@@ -231,7 +248,7 @@ function draw(){
     if (rmag2 > smallcircle/2 && rmag2 < diameter/2 && theta2 < end2[n-(24*cs)]+90 && theta2 > start2[n-(24*cs)]+90){
     console.log(alone_race[n]); fill(color('#152F48')); ellipse(rightx, topy, smallcircle, smallcircle);
     textSize(txtsize);   textStyle(BOLD); fill(255); text(alone_race_per[n], rightx,topy-yoffset);
-    textSize(smlltxtsz); text(alone_race[n], rightx,topy+racoffset); 
+    textSize(smlltxtsz); text(alone_race[n], rightx,topy+racoffset); text(totracialNumber[2+(4*cs)],rightx,topy+boffset);
     }
   }
 }
@@ -251,7 +268,7 @@ function draw(){
     if (rmag3 > smallcircle/2 && rmag3 < diameter/2 && theta3 < end3[j-(24*cs)]+90 && theta3 > start3[j-(24*cs)]+90){
     console.log(alone_race[j]); fill(color('#152F48')); ellipse(leftx, bottomy, smallcircle, smallcircle);
     textSize(txtsize);   textStyle(BOLD); fill(255); text(alone_race_per[j], leftx,bottomy-yoffset);
-    textSize(smlltxtsz); text(alone_race[j], leftx,bottomy+racoffset); 
+    textSize(smlltxtsz); text(alone_race[j], leftx,bottomy+racoffset); text(totracialNumber[4+(4*cs)],leftx,bottomy+boffset);
     }
 
   //bottom right
@@ -267,7 +284,7 @@ function draw(){
     if (rmag4 > smallcircle/2 && rmag4 < diameter/2 && theta4 < end4[n-(24*cs)]+90 && theta4 > start4[n-(24*cs)]+90){
     console.log(alone_race[n]); fill(color('#152F48')); ellipse(rightx, bottomy, smallcircle, smallcircle);
     textSize(txtsize);   textStyle(BOLD); fill(255); text(alone_race_per[n], rightx,bottomy-yoffset);
-    textSize(smlltxtsz); text(alone_race[n], rightx,bottomy+racoffset); 
+    textSize(smlltxtsz); text(alone_race[n], rightx,bottomy+racoffset); text(totracialNumber[3+(4*cs)],rightx,bottomy+boffset);
     }
   }
 }
@@ -281,7 +298,7 @@ function draw(){
   text(county[0+(4*cs)]+", " +state[0+(4*cs)], leftx, topy-(diameter/2)-yoffset);
   text(county[3+(4*cs)]+", " +state[1+(4*cs)], leftx, bottomy-(diameter/2)-yoffset);
   text(county[1+(4*cs)]+", " +state[2+(4*cs)], rightx, topy-(diameter/2)-yoffset);
-  text(county[2+(4*cs)]+", " +state[3]+(4*cs), rightx, bottomy-(diameter/2)-yoffset);
+  text(county[2+(4*cs)]+", " +state[3+(4*cs)], rightx, bottomy-(diameter/2)-yoffset);
   pop();
 
 }
