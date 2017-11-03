@@ -6,41 +6,22 @@ var user_key = 'ac34b99eefc48a3f26f41ba60f1f119f76f7fe73';
 var whiteblack = 'P0080011';
 var county =  01;
 var state = 06;
-
 // matrix goes :white (0), black 1, american indian 2, asian3 , pacific islander 4, hispanic 5 , total 6
-
-var totmatrix = 'P0090005,P0090006,P0090007,P0090008,P0090009,P0090002,P0090001'
+var totmatrix = 'P0090005,P0090006,P0090007,P0090008,P0090009,P0090002,P0090001';
 var countytot = 01;
 var statetot = 06;
-
 var url1= 'https://api.census.gov/data/2010/sf1?get='+whiteblack+'&for=county:'+county+'&in=state:'+state+'&key=ac34b99eefc48a3f26f41ba60f1f119f76f7fe73';
 var urltot = 'https://api.census.gov/data/2010/sf1?get='+totmatrix+'&for=county:'+countytot+'&in=state:'+statetot+'&key=ac34b99eefc48a3f26f41ba60f1f119f76f7fe73';
 
-var value = 0;
 var queryResult;
-var xcanvas = 11*120;
-var ycanvas = 11.19*120;
-var polysides = 6;
-var centerx = xcanvas/2;
-var centery = ycanvas/2;
-var h = (Math.sqrt(3))/2;
 
-  //types of things
+var xcanvas = 11*120; var ycanvas = 11.4*120; var centerx = xcanvas/2; var centery = ycanvas/2; var h = (Math.sqrt(3))/2;var value = 0;
 
-  var aswh = "Asian Whites "; var asbl = "Black Asians "; var ashs = "Asian Hispanics "; var asind = "Indian Asians "; var aspi = "Asian Pacific Islander ";
-  var multiracialMatrix = ["Asian Whites ", asbl, ashs, asind, aspi]
-  var mr = 0;
-  var chosenMR = multiracialMatrix[mr];
-
-  // severity
-  var mostL = " most likely"; var leastL = " least likely"; var medL = " on average likely";
-  var chooseSeverity = [mostL, medL, leastL]
-  // other words that are needed
-  var are = "are";
+//status!
+  var status=0;
 
 // ------------------------------SETUP---------------------------------
  
-var cs = 1; // choose severity setup
 
 function setup() {
   createCanvas(xcanvas, ycanvas);
@@ -48,26 +29,6 @@ function setup() {
   query();
   noLoop();
 
-
-// might need to move this from setup
-  textAlign(LEFT);
-  var explaintxt = 37;
-  var topicLiney = 97;
-  var topicLinex = xcanvas/9;
-
-  push();
-  textStyle(BOLD);
-  textSize(explaintxt);
-  var linespace = 19;
-  fill(color('#FEA034'));
-  text(chosenMR, topicLinex, topicLiney);
-  text(chooseSeverity[cs], topicLinex+((chosenMR.length)+(are.length))*linespace, topicLiney);
-
-  fill(255);
-  text("are ", topicLinex+((chosenMR.length)*linespace), topicLiney);
-  text("to live in these", topicLinex+((chosenMR.length)+(are.length)+(chooseSeverity[cs].length))*linespace, topicLiney);
-  text("counties", topicLinex, topicLiney+explaintxt);
-  pop();
 }
 
 // ------------------------------FUNCTIONS for DATA---------------------------------
@@ -86,13 +47,11 @@ function query(state, county, race) {
 	loadJSON(url1, gotData, 'json')
 }
 
-
 // Request is completed
 function gotData(data) {
+  queryResult = data;
 	//TODO: Figure out how to properly return the hashmap
-
   // console.log(data);
-  queryResult = data;
 
   // only look at current results:
 	var currentPopulation = queryResult;
@@ -103,27 +62,36 @@ function gotData(data) {
 	var hispanics = currentPopulation[1][3];
 	console.log(whitepop);
 
-  // labels at the tops of the circles
-
-
-  // numbers in the middle
-
+  // data! for circles! need to make global variables
+  var asianper = .2; hispanicper = .3; blackper = .1, indianper = .02, pacificper = .08, whiteper = .3;
+  var angles = [ asianper*360, hispanicper*360, blackper*360, indianper*360, pacificper*360, whiteper*360];
+  var multiracialNumber = ["203905", "100535", "109235", "43,125"];
 }
 
 // ------------------------------GLOBAL VARIABLES FOR LOOKS---------------------------------
 
+  var asianper = .2; hispanicper = .3; blackper = .1, indianper = .02, pacificper = .08, whiteper = .3;
+  var angles = [ asianper*360, hispanicper*360, blackper*360, indianper*360, pacificper*360, whiteper*360];
+  var multiracialNumber = ["203905", "100535", "109235", "43,125"];
+
 
 var smlltxtsz = 22;
+
+var aswh = "Asian Whites "; var asbl = "Black Asians "; var ashs = "Asian Hispanics "; var asind = "Indian Asians "; var aspi = "Asian Pacific Islander ";
+var multiracialMatrix = [aswh, asbl, ashs, asind, aspi]
+var mostL = " most likely"; var leastL = " least likely"; var medL = " on average likely";
+var chooseSeverity = [mostL, medL, leastL]
+  // other words that are needed
+var are = "are";
 
 // colors
 var asiancolor = "#E0231E", hispaniccolor = "#E07A22", blackcolor ="#E0A12E", pacificcolor = "#E0C634", indiancolor = "#2D62BA", whitecolor = "#387BBF";
 var gray = [asiancolor, hispaniccolor, blackcolor, pacificcolor, indiancolor, whitecolor];
 var highasian = [];
 
-// data! 
-var asianper = .2; hispanicper = .3; blackper = .1, indianper = .02, pacificper = .08, whiteper = .3;
-var angles = [ asianper*360, hispanicper*360, blackper*360, indianper*360, pacificper*360, whiteper*360];
-var multiracialNumber = ["203905", "100535", "109235", "43,125"];
+//for ellipses
+var esize = 20, shifted = esize*1.55; var eycanvas = 0.982;
+
 
 // ------------------------------SETUP FOR LOOKS---------------------------------
 
@@ -132,7 +100,7 @@ function draw(){
 
   push();
   noFill(); strokeWeight(3.25); stroke(color("#387BBF")); 
-  var boxheight = 45, boxwidth = 142, xover = .785, yover = .94;
+  var boxheight = 45, boxwidth = 142, xover = .785, yover = .93;
   rect(xcanvas*xover, ycanvas*yover, boxwidth, boxheight, 11);
   rect(xcanvas*xover-boxwidth-20, ycanvas*yover, boxwidth, boxheight, 11);
   rect(xcanvas*xover-(boxwidth*2)-40, ycanvas*yover, boxwidth, boxheight, 11);
@@ -141,6 +109,36 @@ function draw(){
   text("Most",xcanvas*xover-(boxwidth*2)-40+(boxwidth/2), ycanvas*yover+(boxheight/2)+(3.25));
   text("Median",xcanvas*xover-boxwidth-20+(boxwidth/2), ycanvas*yover+(boxheight/2)+(3.25));
   text("Least",xcanvas*xover+(boxwidth/2), ycanvas*yover+(boxheight/2)+(3.25));
+
+  // change the multiracial pairings
+  noFill(); strokeWeight(3.25); stroke(color("#387BBF"));
+  for (var i = 0; i < 15; i++) {
+    ellipse((xcanvas*xover+boxwidth+3.5-esize)-(shifted*i),ycanvas*eycanvas,esize,esize);
+  }
+  pop();
+
+  // State Variables
+  var mr = 0; var chosenMR = multiracialMatrix[mr];
+  var cs = 1;
+
+  // Top Title Page
+  textAlign(LEFT);
+  var explaintxt = 37;
+  var topicLiney = 97;
+  var topicLinex = xcanvas/9;
+
+  push();
+  textStyle(BOLD);
+  textSize(explaintxt);
+  var linespace = 19;
+  fill(color('#FEA034'));
+  text(chosenMR, topicLinex, topicLiney);
+  text(chooseSeverity[cs], topicLinex+((chosenMR.length)+(are.length))*linespace, topicLiney);
+
+  fill(255);
+  text("are ", topicLinex+((chosenMR.length)*linespace), topicLiney);
+  text("to live in these", topicLinex+((chosenMR.length)+(are.length)+(chooseSeverity[cs].length))*linespace, topicLiney);
+  text("counties", topicLinex, topicLiney+explaintxt);
   pop();
 
 }
@@ -220,12 +218,36 @@ function pieChart(diameter, data) {
 
 function mousePressed() {
 
-  if (value == 0) {
-    value = 255;
+  var boxheight = 45, boxwidth = 142, xover = .785, yover = .93;
+ // rect(xcanvas*xover, ycanvas*yover, boxwidth, boxheight, 11);
+  //rect(xcanvas*xover-boxwidth-20, ycanvas*yover, boxwidth, boxheight, 11);
+  //rect(xcanvas*xover-(boxwidth*2)-40, ycanvas*yover, boxwidth, boxheight, 11);
 
-  } else {
-    value = 0;
+  if (mouseX > xcanvas*xover && mouseX < xcanvas*xover+boxwidth && mouseY > ycanvas*yover && mouseY < (ycanvas*yover)+boxheight) {
+    status = 2;
+    console.log("State is 2, least likely!")
+  } 
+
+  if (mouseX > xcanvas*xover-boxwidth-20 && mouseX < xcanvas*xover-boxwidth-20+boxwidth && mouseY > ycanvas*yover && mouseY < (ycanvas*yover)+boxheight){
+    status = 1;
+    console.log("State is 1, median!")
   }
+  else if(mouseX > xcanvas*xover-(boxwidth*2)-40 && mouseX < xcanvas*xover-(boxwidth*2)-40+boxwidth && mouseY > ycanvas*yover && mouseY < (ycanvas*yover)+boxheight){
+    status = 0;
+    console.log("State is 0, most")
+  }
+
+  //change the MultiRacial Paring 
+  var ebeg = xcanvas*xover+boxwidth+3.5-esize; 
+  if( mouseY > ycanvas*eycanvas && mouseY < ycanvas*eycanvas+esize ){
+
+    mr = 0;
+
+    for (var i = 0; i < 15; i++) {
+    ellipse((xcanvas*xover+boxwidth+3.5-esize)-(shifted*i),ycanvas*eycanvas,esize,esize);
+  }
+  }
+
 }
 
 
