@@ -52,11 +52,12 @@ function gotData(data) {
 
 // ------------------------------GLOBAL VARIABLES FOR LOOKS---------------------------------
 
-  //var asianper = .2; hispanicper = .3; blackper = .1, indianper = .02, pacificper = .08, whiteper = .3;
-  raw_races = [.31,.11,.006,.005,.091,.48  ,.429,.097,.028,.003,.095,.348,   .216,.126,.008,.006,.13,.514,   .08,.011,.001,.001,.50,.261,    .007,.019,.047,.002,.001,.923,  .004,.037,.005,.006,.001,.941,   .005,0.125,.008,.014,.001,.96,    .011,.056,.459,.004,.001,.514,.003,.053,.274,.009,.001,.695,    .003,.018,.477,.007,.001,.501,     .22,.28,.1,.02,.08,.3, .22,.28,.1,.02,.08,.3]
+  //var asianper = .2; hispanicper = .3; blackper = .1, indianper = .02, pacificper = .08, whiteper = .3
+  //                    Kauai                    honoloulu                       hawaaii                        kalawo                          lycoming                         sanilac                           deer lodge                    indiana                            cheyenne                          baker                      clinch                                          quitman                    
+  raw_races = [.31,.11,.006,.005,.091,.33,  .429,.097,.028,.003,.095,.22,   .216,.126,.008,.006,.13,.34,   .08,.011,.001,.001,.50,.261,    .007,.019,.047,.002,.001,.923,  .01,.037,.01,.01,.01,.90,   .01,0.03,.001,.014,.01,.92,    .012,.013,.026,.001,.002,.95,   .005,.12,.008,.014,.001,.84,    .001,.056,.45,.004,.001,.48,    0.003, 0.053, 0.274, 0.01, 0.001, 0.652,  0.003, 0.018, 0.477, 0.007, 0, .49]
   //var race_raw_per = [asianper*100, hispanicper*100, blackper*100, indianper*100, pacificper*100, whiteper*100]
   var race_raw_per = []
-  var angles = [];
+  var angles = []
   var alone_race_per = [];
   for (var i = 0; i <=raw_races.length-1; i++) {
     angles.push(raw_races[i]*360)
@@ -64,7 +65,7 @@ function gotData(data) {
   }
   console.log(race_raw_per)
   for (var i = 0; i <=race_raw_per.length-1; i++) {
-    alone_race_per.push(Math.round(race_raw_per[i]).toString()+"%")
+    alone_race_per.push(Math.ceil(Math.round(race_raw_per[i])).toString()+"%")
   }
 
   //var angles = [ asianper*360, hispanicper*360, blackper*360, indianper*360, pacificper*360, whiteper*360, ];
@@ -83,8 +84,9 @@ function gotData(data) {
 
   var totracialNumber = []
   totalcitynumbers = [ 72029,992605,198449,88,115248,41409,9085,86364,1848,3150,6829,2335]
+  
   for (var i = 0; i <totalcitynumbers.length; i++) {
-    totracialNumber.push((totalcitynumbers[i]).toString()+"%")
+    totracialNumber.push((totalcitynumbers[i]).toString())
   }
 
 // names for the things
@@ -144,14 +146,14 @@ function draw(){
   var topicLinex = xcanvas/9;
 
   push();
-  textStyle(BOLD);
   textSize(explaintxt);
   var linespace = 19;
-  fill(color('#FEA034'));
+
+  textStyle(ITALIC); fill(255); strokeWeight(2); stroke(255);
   text(chosenMR, topicLinex, topicLiney);
   text(chooseSeverity[cs], topicLinex+((chosenMR.length)+(are.length))*linespace, topicLiney);
 
-  fill(255);
+  textStyle(BOLD); noStroke();
   text("are ", topicLinex+((chosenMR.length)*linespace), topicLiney);
   text("to live in these", topicLinex+((chosenMR.length)+(are.length)+(chooseSeverity[cs].length)-1)*linespace, topicLiney);
   text("counties", topicLinex, topicLiney+explaintxt);
@@ -169,32 +171,28 @@ function draw(){
     fill(color(gray[i]));
     arc(leftx/2, topy/2, diameter, diameter, lastAngle, lastAngle+radians(angles[i+(24*cs)]));
     lastAngle += radians(angles[i+(24*cs)]);
-    fill(color('#152F48'));
-    ellipse(leftx/2, topy/2, smallcircle, smallcircle);
+    fill(color('#152F48')); ellipse(leftx/2, topy/2, smallcircle, smallcircle);
   }
   lastAngle=0;
-  for (var i = 6; i <= 11; i++) {
-    fill(color(gray[i]));
-    arc(leftx/2, bottomy/2, diameter, diameter, lastAngle, lastAngle+radians(angles[i+(24*cs)]));
-    lastAngle += radians(angles[i+(24*cs)]);
-    fill(color('#152F48'));
-    ellipse(leftx/2, bottomy/2, smallcircle, smallcircle);
-  }
-  lastAngle=0;
-    for (var i = 18; i <= 23; i++) {
+    for (var i = 6; i <= 11; i++) {
     fill(color(gray[i]));
     arc(rightx/2, topy/2, diameter, diameter, lastAngle, lastAngle+radians(angles[i+(24*cs)]));
     lastAngle += radians(angles[i+(24*cs)]);
-    fill(color('#152F48'));
-    ellipse(rightx/2, topy/2, smallcircle, smallcircle);
+    fill(color('#152F48')); ellipse(rightx/2, topy/2, smallcircle, smallcircle);
   }
   lastAngle=0;
   for (var i = 12; i <=17; i++) {
     fill(color(gray[i]));
     arc(rightx/2, bottomy/2, diameter, diameter, lastAngle, lastAngle+radians(angles[i+(24*cs)]));
     lastAngle += radians(angles[i+(24*cs)]);
-    fill(color('#152F48'));
-    ellipse(rightx/2, bottomy/2, smallcircle, smallcircle);
+    fill(color('#152F48')); ellipse(rightx/2, bottomy/2, smallcircle, smallcircle);
+  }
+  lastAngle=0;
+  for (var i = 18; i <= 23; i++) {
+    fill(color(gray[i]));
+    arc(leftx/2, bottomy/2, diameter, diameter, lastAngle, lastAngle+radians(angles[i+(24*cs)]));
+    lastAngle += radians(angles[i+(24*cs)]);
+    fill(color('#152F48')); ellipse(leftx/2, bottomy/2, smallcircle, smallcircle);
   }
 
 // internal to charts data
@@ -222,79 +220,73 @@ function draw(){
   //upper left, asian
   var leftx = xcanvas/4; rightx = leftx*3; var topy = ycanvas/3; bottomy = topy*2.2; var beg = 0, stop = 0; var start = []; var end = [];
   var v = [mouseX-leftx, mouseY-topy], rmag = Math.sqrt((v[0]*v[0])+(v[1]*v[1])), theta = abs(180*(Math.atan2(v[0],v[1]))/PI-180);
-  for (var i = 0+(24*cs); i <=23+(24*cs); i++) {
+  for (var i = 0+(24*cs); i <=5+(24*cs); i++) {
     stop = beg + (angles[i]);
     start.push(beg);
     end.push(stop); 
     beg = stop;
   }
-  for (var j = 0+(24*cs); j <=23+(24*cs); j++) {
+  for (var j = 0+(24*cs); j <=5+(24*cs); j++) {
     if (rmag > smallcircle/2 && rmag < diameter/2 && theta < end[j-(24*cs)]+90 && theta > start[j-(24*cs)]+90){
     console.log(alone_race[j]); fill(color('#152F48')); ellipse(leftx, topy, smallcircle, smallcircle);
     textSize(txtsize);   textStyle(BOLD); fill(255); text(alone_race_per[j], leftx,topy-yoffset);
-    textSize(smlltxtsz); text(alone_race[j], leftx,topy+racoffset); text(totracialNumber[1+(4*cs)],leftx,topy+boffset);
-    }
+    textSize(smlltxtsz); text(alone_race[j], leftx,topy+racoffset); text(totracialNumber[1+(4*cs)-1],leftx,topy+boffset);
+    } }
 
   //upper right
-  var beg2 = 0, stop2 = 0; var start2 = []; var end2 = [];
-  var v2 = [mouseX-rightx, mouseY-topy], rmag2 = Math.sqrt((v2[0]*v2[0])+(v2[1]*v2[1])), theta2 = abs(180*(Math.atan2(v2[0],v2[1]))/PI-180);
-  for (var m = 0+(24*cs); m <=23+(24*cs); m++) {
-    stop2 = beg2 + (angles[m]);
-    start2.push(beg2);
-    end2.push(stop2); 
-    beg2 = stop2;
+  var leftx = xcanvas/4; rightx = leftx*3; var topy = ycanvas/3; bottomy = topy*2.2; var beg = 0, stop = 0; var start = []; var end = []; var xpos = rightx; var ypos = topy;
+  var v = [mouseX-rightx, mouseY-topy], rmag = Math.sqrt((v[0]*v[0])+(v[1]*v[1])), theta = abs(180*(Math.atan2(v[0],v[1]))/PI-180);
+  for (var i = 6+(24*cs); i <=11+(24*cs); i++) {
+    stop = beg + (angles[i]);
+    start.push(beg);
+    end.push(stop); 
+    beg = stop;
   }
-  for (var n = 0+(24*cs); n <=23+(24*cs); n++) {
-    if (rmag2 > smallcircle/2 && rmag2 < diameter/2 && theta2 < end2[n-(24*cs)]+90 && theta2 > start2[n-(24*cs)]+90){
-    console.log(alone_race[n]); fill(color('#152F48')); ellipse(rightx, topy, smallcircle, smallcircle);
-    textSize(txtsize);   textStyle(BOLD); fill(255); text(alone_race_per[n], rightx,topy-yoffset);
-    textSize(smlltxtsz); text(alone_race[n], rightx,topy+racoffset); text(totracialNumber[2+(4*cs)],rightx,topy+boffset);
-    }
+  for (var j = 0+(24*cs); j <=5+(24*cs); j++) {
+    if (rmag > smallcircle/2 && rmag < diameter/2 && theta < end[j-(24*cs)]+90 && theta > start[j-(24*cs)]+90){
+    console.log(alone_race[j]); fill(color('#152F48')); ellipse(xpos, ypos, smallcircle, smallcircle);
+    textSize(txtsize);   textStyle(BOLD); fill(255); text(alone_race_per[j+6], xpos,ypos-yoffset);
+    textSize(smlltxtsz); text(alone_race[j], xpos,ypos+racoffset); text(totracialNumber[2+(4*cs)-1],xpos,ypos+boffset);
+    } }
+
+   //bottom right
+  var leftx = xcanvas/4; rightx = leftx*3; var topy = ycanvas/3; bottomy = topy*2.2; var beg = 0, stop = 0; var start = []; var end = []; var xpos = rightx; var ypos = bottomy;
+  var v = [mouseX-xpos, mouseY-ypos], rmag = Math.sqrt((v[0]*v[0])+(v[1]*v[1])), theta = abs(180*(Math.atan2(v[0],v[1]))/PI-180);
+  for (var i = 12+(24*cs); i <=17+(24*cs); i++) {
+    stop = beg + (angles[i]);
+    start.push(beg);
+    end.push(stop); 
+    beg = stop;
   }
-}
+  for (var j = 0+(24*cs); j <=5+(24*cs); j++) {
+    if (rmag > smallcircle/2 && rmag < diameter/2 && theta < end[j-(24*cs)]+90 && theta > start[j-(24*cs)]+90){
+    console.log(alone_race[j]); fill(color('#152F48')); ellipse(xpos, ypos, smallcircle, smallcircle);
+    textSize(txtsize);   textStyle(BOLD); fill(255); text(alone_race_per[j+12], xpos,ypos-yoffset);
+    textSize(smlltxtsz); text(alone_race[j], xpos,ypos+racoffset); text(totracialNumber[3+(4*cs)-1],xpos,ypos+boffset);
+    } }
 
   //bottom left
-  var leftx = xcanvas/4; rightx = leftx*3; bottomy = topy*2.2; 
-  var beg3 = 0, stop3 = 0; var start3 = []; var end3 = [];
-  
-  var v3 = [mouseX-leftx, mouseY-bottomy], rmag3 = Math.sqrt((v3[0]*v3[0])+(v3[1]*v3[1])), theta3 = abs(180*(Math.atan2(v3[0],v3[1]))/PI-180);
-  for (var p = 0+(24*cs); p <=23+(24*cs); p++) {
-    stop3 = beg3 + (angles[p]);
-    start3.push(beg3);
-    end3.push(stop3); 
-    beg3 = stop3;
+  var leftx = xcanvas/4; rightx = leftx*3; var topy = ycanvas/3; bottomy = topy*2.2; var beg = 0, stop = 0; var start = []; var end = []; var xpos = leftx; var ypos = bottomy;
+  var v = [mouseX-xpos, mouseY-ypos], rmag = Math.sqrt((v[0]*v[0])+(v[1]*v[1])), theta = abs(180*(Math.atan2(v[0],v[1]))/PI-180);
+  for (var i = 18+(24*cs); i <=23+(24*cs); i++) {
+    stop = beg + (angles[i]);
+    start.push(beg);
+    end.push(stop); 
+    beg = stop;
   }
-  for (var j = 0+(24*cs); j <=23+(24*cs); j++) {
-    if (rmag3 > smallcircle/2 && rmag3 < diameter/2 && theta3 < end3[j-(24*cs)]+90 && theta3 > start3[j-(24*cs)]+90){
-    console.log(alone_race[j]); fill(color('#152F48')); ellipse(leftx, bottomy, smallcircle, smallcircle);
-    textSize(txtsize);   textStyle(BOLD); fill(255); text(alone_race_per[j], leftx,bottomy-yoffset);
-    textSize(smlltxtsz); text(alone_race[j], leftx,bottomy+racoffset); text(totracialNumber[4+(4*cs)],leftx,bottomy+boffset);
-    }
-
-  //bottom right
-  var beg4 = 0, stop4 = 0; var start4 = []; var end4 = [];
-  var v4 = [mouseX-rightx, mouseY-bottomy], rmag4 = Math.sqrt((v4[0]*v4[0])+(v4[1]*v4[1])), theta4 = abs(180*(Math.atan2(v4[0],v4[1]))/PI-180);
-  for (var m = 0+(24*cs); m <=23+(24*cs); m++) {
-    stop4 = beg4 + (angles[m]);
-    start4.push(beg4);
-    end4.push(stop4); 
-    beg4 = stop4;
-  }
-  for (var n = 0+(24*cs); n <=23+(24*cs); n++) {
-    if (rmag4 > smallcircle/2 && rmag4 < diameter/2 && theta4 < end4[n-(24*cs)]+90 && theta4 > start4[n-(24*cs)]+90){
-    console.log(alone_race[n]); fill(color('#152F48')); ellipse(rightx, bottomy, smallcircle, smallcircle);
-    textSize(txtsize);   textStyle(BOLD); fill(255); text(alone_race_per[n], rightx,bottomy-yoffset);
-    textSize(smlltxtsz); text(alone_race[n], rightx,bottomy+racoffset); text(totracialNumber[3+(4*cs)],rightx,bottomy+boffset);
-    }
-  }
-}
+  for (var j = 0+(24*cs); j <=5+(24*cs); j++) {
+    if (rmag > smallcircle/2 && rmag < diameter/2 && theta < end[j-(24*cs)]+90 && theta > start[j-(24*cs)]+90){
+    console.log(alone_race[j]); fill(color('#152F48')); ellipse(xpos, ypos, smallcircle, smallcircle);
+    textSize(txtsize);   textStyle(BOLD); fill(255); text(alone_race_per[j+18], xpos,ypos-yoffset);
+    textSize(smlltxtsz); text(alone_race[j], xpos,ypos+racoffset); text(totracialNumber[4+(4*cs)-1],xpos,ypos+boffset);
+    } }
   
   pop();
 
   push();
   var leftx = xcanvas/4; rightx = leftx*3;
   var topy = ycanvas/3; bottomy = topy*2.2; var yoffset = 25;
-  textSize(30), textAlign(CENTER); textStyle(BOLD); fill(color("#387BBF"));
+  textSize(30), textAlign(CENTER); textStyle(BOLD); fill(255);
   text(county[0+(4*cs)]+", " +state[0+(4*cs)], leftx, topy-(diameter/2)-yoffset);
   text(county[3+(4*cs)]+", " +state[1+(4*cs)], leftx, bottomy-(diameter/2)-yoffset);
   text(county[1+(4*cs)]+", " +state[2+(4*cs)], rightx, topy-(diameter/2)-yoffset);
