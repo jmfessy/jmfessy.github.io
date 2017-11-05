@@ -81,7 +81,7 @@ var race_raw_per = []
 var eachrace_per = [];
 var totracialNumber = []
 for (var i = 0; i <totalcitynumbers.length; i++) {
-    totracialNumber.push((totalcitynumbers[i]).toString())
+    //totracialNumber.push((totalcitynumbers[i]).toString())
     matrixi = raw_races[(6*i)]*totalcitynumbers[i]; matrix2 = raw_races[(6*i)+1]*totalcitynumbers[i]; matrix3 = raw_races[(6*i)+2]*totalcitynumbers[i]; matrix4 = raw_races[(6*i)+3]*totalcitynumbers[i]; matrix5 = raw_races[(6*i)+4]*totalcitynumbers[i]; matrix6 = raw_races[((6*i)+5)]*totalcitynumbers[i];
     eachrace_per.push(matrixi); eachrace_per.push(matrix2);eachrace_per.push(matrix3);eachrace_per.push(matrix4);eachrace_per.push(matrix5);eachrace_per.push(matrix6);
   }
@@ -101,7 +101,6 @@ var multiracialNumber = [];
 
   background(color('#152F48'));
 
-
   push();
   noFill(); strokeWeight(3.25); stroke(color("#387BBF")); 
   var boxheight = 45, boxwidth = 142, xover = .785, yover = .93;
@@ -114,6 +113,7 @@ var multiracialNumber = [];
   text("Median",xcanvas*xover-boxwidth-20+(boxwidth/2), ycanvas*yover+(boxheight/2)+(3.25));
   text("Least",xcanvas*xover+(boxwidth/2), ycanvas*yover+(boxheight/2)+(3.25));
 
+  
   // ellipses - change the multiracial pairings
   noFill(); strokeWeight(3.25); stroke(color("#387BBF"));
   for (var i = 0; i < 15; i++) {
@@ -136,7 +136,7 @@ var multiracialNumber = [];
   textSize(explaintxt);
   var linespace = 19;
 
-  textStyle(ITALIC); fill(255); strokeWeight(2); stroke(255);
+  textStyle(BOLD); fill(255); //strokeWeight(2); stroke(255);textStyle(ITALIC)
   text(chosenMR, topicLinex, topicLiney);
   text(chooseSeverity[cs], topicLinex+((chosenMR.length)+(are.length))*linespace, topicLiney);
 
@@ -144,6 +144,13 @@ var multiracialNumber = [];
   text("are ", topicLinex+((chosenMR.length)*linespace), topicLiney);
   text("to live in these", topicLinex+((chosenMR.length)+(are.length)+(chooseSeverity[cs].length)-1)*linespace, topicLiney);
   text("counties", topicLinex, topicLiney+explaintxt);
+
+  stroke(255);strokeWeight(3);
+  var lengthMost = [100, 206,94]; topicLiney = topicLiney+7;
+  line(topicLinex+((chosenMR.length)+(are.length))*linespace+10, topicLiney, topicLinex+((chosenMR.length)+(are.length))*linespace+lengthMost[cs], topicLiney);
+  var lengthRace =[ 230, 230, 285, 240, 380, 230, 285, 240, 400, 280, 237, 400, 293, 455, 410];
+  line(topicLinex, topicLiney, topicLinex+lengthRace[mr], topicLiney);
+
   pop();
 
   // charts
