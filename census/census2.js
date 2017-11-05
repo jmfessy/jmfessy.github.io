@@ -44,7 +44,7 @@ var smallcircle = 300; var diameter = 400; var d = 0;
 function draw(){
 if (mr ==0) {
   //var asianper = .2; hispanicper = .3; blackper = .1, indianper = .02, pacificper = .08, whiteper = .3
-  //                    Kauai                    honoloulu                       hawaaii                        kalawo                          lycoming                         sanilac                           deer lodge                    indiana                            cheyenne                          baker                      clinch                                          quitman                    
+  //                    Kauai        `            honoloulu                       hawaaii                        kalawo                          lycoming                         sanilac                           deer lodge                    indiana                            cheyenne                          baker                      clinch                                          quitman                    
   raw_races = [.31,.11,.006,.005,.091,.33,  .429,.097,.028,.003,.095,.22,   .216,.126,.008,.006,.13,.34,   .08,.011,.001,.001,.50,.261,    .007,.019,.047,.002,.001,.923,  .01,.037,.01,.01,.01,.90,   .01,0.03,.001,.014,.01,.92,    .012,.013,.026,.001,.002,.95,   .005,.12,.008,.014,.001,.84,    .001,.056,.45,.004,.001,.48,    0.003, 0.053, 0.274, 0.01, 0.001, 0.652,  0.003, 0.018, 0.477, 0.007, 0, .49]
   populations = [3640, 47609, 8918, 4, 175, 65, 14, 134, 0, 0, 0, 0]  
   percentages = [25, 18, 30, 15, 1, 1, 1, 1, 0.0, 0.0, 0.0, 0.0]
@@ -78,10 +78,14 @@ var race_raw_per = []
     alone_race_per.push(Math.ceil(Math.round(race_raw_per[i])).toString()+"%")
   }
 
+var eachrace_per = [];
 var totracialNumber = []
 for (var i = 0; i <totalcitynumbers.length; i++) {
     totracialNumber.push((totalcitynumbers[i]).toString())
+    matrixi = raw_races[(6*i)]*totalcitynumbers[i]; matrix2 = raw_races[(6*i)+1]*totalcitynumbers[i]; matrix3 = raw_races[(6*i)+2]*totalcitynumbers[i]; matrix4 = raw_races[(6*i)+3]*totalcitynumbers[i]; matrix5 = raw_races[(6*i)+4]*totalcitynumbers[i]; matrix6 = raw_races[((6*i)+5)]*totalcitynumbers[i];
+    eachrace_per.push(matrixi); eachrace_per.push(matrix2);eachrace_per.push(matrix3);eachrace_per.push(matrix4);eachrace_per.push(matrix5);eachrace_per.push(matrix6);
   }
+
 
 var multiper = [];
 for (var i = 0; i <percentages.length; i++) {
@@ -216,7 +220,7 @@ var multiracialNumber = [];
     if (rmag > smallcircle/2 && rmag < diameter/2 && theta < end[j-(24*cs)]+90 && theta > start[j-(24*cs)]+90){
     console.log(alone_race[j]); fill(color('#152F48')); ellipse(leftx, topy, smallcircle, smallcircle);
     textSize(txtsize);   textStyle(BOLD); fill(255); text(alone_race_per[j], leftx,topy-yoffset);
-    textSize(smlltxtsz); text(alone_race[j]+" Alone", leftx,topy+racoffset); text(totracialNumber[1+(4*cs)-1],leftx,topy+boffset);
+    textSize(smlltxtsz); text(alone_race[j]+" Alone", leftx,topy+racoffset); text(Math.ceil(eachrace_per[j]),leftx,topy+boffset);
     } }
 
   //upper right
@@ -232,7 +236,7 @@ var multiracialNumber = [];
     if (rmag > smallcircle/2 && rmag < diameter/2 && theta < end[j-(24*cs)]+90 && theta > start[j-(24*cs)]+90){
     console.log(alone_race[j]); fill(color('#152F48')); ellipse(xpos, ypos, smallcircle, smallcircle);
     textSize(txtsize);   textStyle(BOLD); fill(255); text(alone_race_per[j+6], xpos,ypos-yoffset);
-    textSize(smlltxtsz); text(alone_race[j]+" Alone", xpos,ypos+racoffset); text(totracialNumber[2+(4*cs)-1],xpos,ypos+boffset);
+    textSize(smlltxtsz); text(alone_race[j]+" Alone", xpos,ypos+racoffset); text(Math.ceil(eachrace_per[j+6]),xpos,ypos+boffset);
     } }
 
    //bottom right
@@ -248,7 +252,7 @@ var multiracialNumber = [];
     if (rmag > smallcircle/2 && rmag < diameter/2 && theta < end[j-(24*cs)]+90 && theta > start[j-(24*cs)]+90){
     console.log(alone_race[j]); fill(color('#152F48')); ellipse(xpos, ypos, smallcircle, smallcircle);
     textSize(txtsize);   textStyle(BOLD); fill(255); text(alone_race_per[j+12], xpos,ypos-yoffset);
-    textSize(smlltxtsz); text(alone_race[j]+" Alone", xpos,ypos+racoffset); text(totracialNumber[3+(4*cs)-1],xpos,ypos+boffset);
+    textSize(smlltxtsz); text(alone_race[j]+" Alone", xpos,ypos+racoffset); text(Math.ceil(eachrace_per[j+12]),xpos,ypos+boffset);
     } }
 
   //bottom left
@@ -264,7 +268,7 @@ var multiracialNumber = [];
     if (rmag > smallcircle/2 && rmag < diameter/2 && theta < end[j-(24*cs)]+90 && theta > start[j-(24*cs)]+90){
     console.log(alone_race[j]); fill(color('#152F48')); ellipse(xpos, ypos, smallcircle, smallcircle);
     textSize(txtsize);   textStyle(BOLD); fill(255); text(alone_race_per[j+18], xpos,ypos-yoffset);
-    textSize(smlltxtsz); text(alone_race[j]+" Alone", xpos,ypos+racoffset); text(totracialNumber[4+(4*cs)-1],xpos,ypos+boffset);
+    textSize(smlltxtsz); text(alone_race[j]+" Alone", xpos,ypos+racoffset); text(Math.ceil(eachrace_per[j+18]),xpos,ypos+boffset);
     }  
   }
   
