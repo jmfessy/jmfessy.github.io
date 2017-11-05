@@ -18,83 +18,12 @@ var xcanvas = 11*120; var ycanvas = 11.4*120; var centerx = xcanvas/2; var cente
 function setup() {
   createCanvas(xcanvas, ycanvas);
   background(color('#152F48'));
-  query();
   //noLoop();
-
-}
-
-// ------------------------------FUNCTIONS for DATA---------------------------------
-
-var user_key = 'ac34b99eefc48a3f26f41ba60f1f119f76f7fe73';
-
-function query(state, county, race) {
-	loadJSON(url, gotData, 'json')
-}
-
-
-function gotData(data) {
-  queryResult = data;
-	var currentPopulation = queryResult;
-	console.log(currentPopulation);
-	var whitepop = currentPopulation[1][0];
-	var multi = currentPopulation[1][1];
-	var totpop = currentPopulation[1][2];
-	var hispanics = currentPopulation[1][3];
-	console.log(whitepop);
-
-  // data! for circles! need to make global variables
-  var asianper = .2; hispanicper = .3; blackper = .1, indianper = .02, pacificper = .08, whiteper = .3;
-  //var angles = [ asianper*360, hispanicper*360, blackper*360, indianper*360, pacificper*360, whiteper*360];
-  var multiracialNumber = ["203905", "100535", "109235", "43,125"];
-  var multiper = ['4%', '2%', '4%', '1%'];
-
 }
 
 // ------------------------------GLOBAL VARIABLES FOR LOOKS---------------------------------
-
-  //var asianper = .2; hispanicper = .3; blackper = .1, indianper = .02, pacificper = .08, whiteper = .3
-  //                    Kauai                    honoloulu                       hawaaii                        kalawo                          lycoming                         sanilac                           deer lodge                    indiana                            cheyenne                          baker                      clinch                                          quitman                    
-  raw_races = [.31,.11,.006,.005,.091,.33,  .429,.097,.028,.003,.095,.22,   .216,.126,.008,.006,.13,.34,   .08,.011,.001,.001,.50,.261,    .007,.019,.047,.002,.001,.923,  .01,.037,.01,.01,.01,.90,   .01,0.03,.001,.014,.01,.92,    .012,.013,.026,.001,.002,.95,   .005,.12,.008,.014,.001,.84,    .001,.056,.45,.004,.001,.48,    0.003, 0.053, 0.274, 0.01, 0.001, 0.652,  0.003, 0.018, 0.477, 0.007, 0, .49]
-  //var race_raw_per = [asianper*100, hispanicper*100, blackper*100, indianper*100, pacificper*100, whiteper*100]
-  var race_raw_per = []
-  var angles = []
-  var alone_race_per = [];
-  for (var i = 0; i <=raw_races.length-1; i++) {
-    angles.push(raw_races[i]*360)
-    race_raw_per.push(raw_races[i]*100)
-  }
-  console.log(race_raw_per)
-  for (var i = 0; i <=race_raw_per.length-1; i++) {
-    alone_race_per.push(Math.ceil(Math.round(race_raw_per[i])).toString()+"%")
-  }
-
-  //var angles = [ asianper*360, hispanicper*360, blackper*360, indianper*360, pacificper*360, whiteper*360, ];
-  //var multiracialNumber = ["1", "2", "3", "4","5","6","7","8","9","10","11","12"];
-  var multiracialNumber = [];
-  populations = [3640, 47609, 8918, 4, 175, 65, 14, 134, 0, 0, 0, 0]
-  for (var i = 0; i <populations.length; i++) {
-    multiracialNumber.push((populations[i]).toString())
-  }
-
-  var multiper = [];
-  percentages = [25, 18, 30, 15, 1, 1, 1, 1, 0.0, 0.0, 0.0, 0.0]
-  for (var i = 0; i <percentages.length; i++) {
-    multiper.push(Math.round(percentages[i]).toString()+"%")
-  }
-
-  var totracialNumber = []
-  totalcitynumbers = [ 72029,992605,198449,88,115248,41409,9085,86364,1848,3150,6829,2335]
   
-  for (var i = 0; i <totalcitynumbers.length; i++) {
-    totracialNumber.push((totalcitynumbers[i]).toString())
-  }
-
-// names for the things
-var state = ["HI", "HI", "HI", "HI", "PA", "MI", "MT", "PA", "CO", "GA", "GA", "GA"];
-
-var county = ["Kauai County", "Honolulu County", "Hawaii County", "Kalawao County", "Lycoming County", "Sanilac County", "Deer Lodge County", "Indiana County", "Cheyenne County", "Baker County","Clinch County", "Quitman County"];
-var alone_race = ["Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White",];
-//var alone_race_per = [race_raw_per[0].toString()+"%",race_raw_per[1].toString()+"%",race_raw_per[2].toString()+"%",race_raw_per[3].toString()+"%",race_raw_per[4].toString()+"%",race_raw_per[5].toString()+"%"]
+var alone_race = ["Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White","Asian", "Hispanic", "Black", "Indian", "Pacific", "White",]; //var alone_race_per = [race_raw_per[0].toString()+"%",race_raw_per[1].toString()+"%",race_raw_per[2].toString()+"%",race_raw_per[3].toString()+"%",race_raw_per[4].toString()+"%",race_raw_per[5].toString()+"%"]
 
 var aswh = "Asian Whites "; var asbl = "Black Asians "; var ashs = "Asian Hispanics "; var asind = "Indian Asians "; var aspi = "Asian Pacific Islander ";
 var multiracialMatrix = [aswh, asbl, ashs, asind, aspi, "White Blacks ", "White Hispanics ", "White Indians ", "White Pacific Islanders ", "Black Hispanics ", "Black Indians ", "Black Pacific Islanders ", "Hispanic Indians ", "Hispanic Pacific Islanders ","Indian Pacific Islanders "]
@@ -107,11 +36,65 @@ var gray = [asiancolor, hispaniccolor, blackcolor, pacificcolor, indiancolor, wh
 
 //for ellipses
 var esize = 20, shifted = esize*1.55; var eycanvas = 0.982;
-var smallcircle = 300; var diameter = 400;
+var smallcircle = 300; var diameter = 400; var d = 0;
+
+
+//-------------------------------FUNCTION---------------------------------------------------------------------------------------
+
+function draw(){
+if (mr ==0) {
+  //var asianper = .2; hispanicper = .3; blackper = .1, indianper = .02, pacificper = .08, whiteper = .3
+  //                    Kauai                    honoloulu                       hawaaii                        kalawo                          lycoming                         sanilac                           deer lodge                    indiana                            cheyenne                          baker                      clinch                                          quitman                    
+  raw_races = [.31,.11,.006,.005,.091,.33,  .429,.097,.028,.003,.095,.22,   .216,.126,.008,.006,.13,.34,   .08,.011,.001,.001,.50,.261,    .007,.019,.047,.002,.001,.923,  .01,.037,.01,.01,.01,.90,   .01,0.03,.001,.014,.01,.92,    .012,.013,.026,.001,.002,.95,   .005,.12,.008,.014,.001,.84,    .001,.056,.45,.004,.001,.48,    0.003, 0.053, 0.274, 0.01, 0.001, 0.652,  0.003, 0.018, 0.477, 0.007, 0, .49]
+  populations = [3640, 47609, 8918, 4, 175, 65, 14, 134, 0, 0, 0, 0]  
+  percentages = [25, 18, 30, 15, 1, 1, 1, 1, 0.0, 0.0, 0.0, 0.0]
+  totalcitynumbers = [ 72029,992605,198449,88,115248,41409,9085,86364,1848,3150,6829,2335]
+
+// names for the things
+var state = ["HI", "HI", "HI", "HI", "PA", "MI", "MT", "PA", "CO", "GA", "GA", "GA"];
+var county = ["Kauai County", "Honolulu County", "Hawaii County", "Kalawao County", "Lycoming County", "Sanilac County", "Deer Lodge County", "Indiana County", "Cheyenne County", "Baker County","Clinch County", "Quitman County"];
+}
+
+if(mr==1){
+  raw_races = [.50,.1,.1,.1,.1,.1,  .429,.097,.028,.003,.095,.22,   .216,.126,.008,.006,.13,.34,   .08,.011,.001,.001,.50,.261,    .007,.019,.047,.002,.001,.923,  .01,.037,.01,.01,.01,.90,   .01,0.03,.001,.014,.01,.92,    .012,.013,.026,.001,.002,.95,   .005,.12,.008,.014,.001,.84,    .001,.056,.45,.004,.001,.48,    0.003, 0.053, 0.274, 0.01, 0.001, 0.652,  0.003, 0.018, 0.477, 0.007, 0, .49]
+  var state = ["VA", "NO", "YO", "HI", "PA", "MI", "MT", "PA", "CO", "GA", "GA", "GA"];
+  populations = [3640, 47609, 8918, 4, 175, 65, 14, 134, 0, 0, 0, 0]  
+  percentages = [25, 18, 30, 15, 1, 1, 1, 1, 0.0, 0.0, 0.0, 0.0]
+  totalcitynumbers = [ 72029,992605,198449,88,115248,41409,9085,86364,1848,3150,6829,2335]
+  var county = ["Kauai County", "Honolulu County", "Hawaii County", "Kalawao County", "Lycoming County", "Sanilac County", "Deer Lodge County", "Indiana County", "Cheyenne County", "Baker County","Clinch County", "Quitman County"];
+
+}
+
+//------------var for all -----------------------------------------------------------
+
+var race_raw_per = []
+  var angles = []
+  var alone_race_per = [];
+  for (var i = 0; i <=raw_races.length-1; i++) {
+    angles.push(raw_races[i]*360)
+    race_raw_per.push(raw_races[i]*100)
+  }
+  for (var i = 0; i <=race_raw_per.length-1; i++) {
+    alone_race_per.push(Math.ceil(Math.round(race_raw_per[i])).toString()+"%")
+  }
+
+var totracialNumber = []
+for (var i = 0; i <totalcitynumbers.length; i++) {
+    totracialNumber.push((totalcitynumbers[i]).toString())
+  }
+
+var multiper = [];
+for (var i = 0; i <percentages.length; i++) {
+    multiper.push(Math.round(percentages[i]).toString()+"%")
+  }
+
+var multiracialNumber = [];
+  for (var i = 0; i <populations.length; i++) {
+    multiracialNumber.push((populations[i]).toString())
+  }  
 
 // ------------------------------SETUP FOR LOOKS---------------------------------
 
-function draw(){
   background(color('#152F48'));
 
 
@@ -160,16 +143,19 @@ function draw(){
   pop();
 
   // charts
-  var diameter = 400;
 
   noStroke();
   var lastAngle = 0;
   var leftx = xcanvas/2; rightx = leftx*3;
   var topy = ycanvas/1.5; bottomy = topy*2.2;
-  var smallcircle = 300;
   for (var i = 0; i <= 5; i++) {
     fill(color(gray[i]));
-    arc(leftx/2, topy/2, diameter, diameter, lastAngle, lastAngle+radians(angles[i+(24*cs)]));
+    if( d == 500){
+      arc(leftx/2, topy/2, d, d, lastAngle, lastAngle+radians(angles[i+(24*cs)]));
+    }
+    else{
+      arc(leftx/2, topy/2, diameter, diameter, lastAngle, lastAngle+radians(angles[i+(24*cs)]));
+    }
     lastAngle += radians(angles[i+(24*cs)]);
     fill(color('#152F48')); ellipse(leftx/2, topy/2, smallcircle, smallcircle);
   }
@@ -230,7 +216,7 @@ function draw(){
     if (rmag > smallcircle/2 && rmag < diameter/2 && theta < end[j-(24*cs)]+90 && theta > start[j-(24*cs)]+90){
     console.log(alone_race[j]); fill(color('#152F48')); ellipse(leftx, topy, smallcircle, smallcircle);
     textSize(txtsize);   textStyle(BOLD); fill(255); text(alone_race_per[j], leftx,topy-yoffset);
-    textSize(smlltxtsz); text(alone_race[j], leftx,topy+racoffset); text(totracialNumber[1+(4*cs)-1],leftx,topy+boffset);
+    textSize(smlltxtsz); text(alone_race[j]+" Alone", leftx,topy+racoffset); text(totracialNumber[1+(4*cs)-1],leftx,topy+boffset);
     } }
 
   //upper right
@@ -246,7 +232,7 @@ function draw(){
     if (rmag > smallcircle/2 && rmag < diameter/2 && theta < end[j-(24*cs)]+90 && theta > start[j-(24*cs)]+90){
     console.log(alone_race[j]); fill(color('#152F48')); ellipse(xpos, ypos, smallcircle, smallcircle);
     textSize(txtsize);   textStyle(BOLD); fill(255); text(alone_race_per[j+6], xpos,ypos-yoffset);
-    textSize(smlltxtsz); text(alone_race[j], xpos,ypos+racoffset); text(totracialNumber[2+(4*cs)-1],xpos,ypos+boffset);
+    textSize(smlltxtsz); text(alone_race[j]+" Alone", xpos,ypos+racoffset); text(totracialNumber[2+(4*cs)-1],xpos,ypos+boffset);
     } }
 
    //bottom right
@@ -262,7 +248,7 @@ function draw(){
     if (rmag > smallcircle/2 && rmag < diameter/2 && theta < end[j-(24*cs)]+90 && theta > start[j-(24*cs)]+90){
     console.log(alone_race[j]); fill(color('#152F48')); ellipse(xpos, ypos, smallcircle, smallcircle);
     textSize(txtsize);   textStyle(BOLD); fill(255); text(alone_race_per[j+12], xpos,ypos-yoffset);
-    textSize(smlltxtsz); text(alone_race[j], xpos,ypos+racoffset); text(totracialNumber[3+(4*cs)-1],xpos,ypos+boffset);
+    textSize(smlltxtsz); text(alone_race[j]+" Alone", xpos,ypos+racoffset); text(totracialNumber[3+(4*cs)-1],xpos,ypos+boffset);
     } }
 
   //bottom left
@@ -278,8 +264,9 @@ function draw(){
     if (rmag > smallcircle/2 && rmag < diameter/2 && theta < end[j-(24*cs)]+90 && theta > start[j-(24*cs)]+90){
     console.log(alone_race[j]); fill(color('#152F48')); ellipse(xpos, ypos, smallcircle, smallcircle);
     textSize(txtsize);   textStyle(BOLD); fill(255); text(alone_race_per[j+18], xpos,ypos-yoffset);
-    textSize(smlltxtsz); text(alone_race[j], xpos,ypos+racoffset); text(totracialNumber[4+(4*cs)-1],xpos,ypos+boffset);
-    } }
+    textSize(smlltxtsz); text(alone_race[j]+" Alone", xpos,ypos+racoffset); text(totracialNumber[4+(4*cs)-1],xpos,ypos+boffset);
+    }  
+  }
   
   pop();
 
@@ -287,11 +274,17 @@ function draw(){
   var leftx = xcanvas/4; rightx = leftx*3;
   var topy = ycanvas/3; bottomy = topy*2.2; var yoffset = 25;
   textSize(30), textAlign(CENTER); textStyle(BOLD); fill(255);
+  diameter = 400;
   text(county[0+(4*cs)]+", " +state[0+(4*cs)], leftx, topy-(diameter/2)-yoffset);
   text(county[3+(4*cs)]+", " +state[1+(4*cs)], leftx, bottomy-(diameter/2)-yoffset);
   text(county[1+(4*cs)]+", " +state[2+(4*cs)], rightx, topy-(diameter/2)-yoffset);
   text(county[2+(4*cs)]+", " +state[3+(4*cs)], rightx, bottomy-(diameter/2)-yoffset);
   pop();
+
+// if within range
+// for circle = diamter_big, diamter_big = <500, diatmer_big ++
+
+
 
 }
 
