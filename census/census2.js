@@ -38,10 +38,15 @@ var gray = [asiancolor, hispaniccolor, blackcolor, pacificcolor, indiancolor, wh
 var esize = 20, shifted = esize*1.55; var eycanvas = 0.982;
 var smallcircle = 300; var diameter = 400; var d = 0;
 
+initialPage = 0;
+
 
 //-------------------------------FUNCTION---------------------------------------------------------------------------------------
 
 function draw(){
+
+//------------MR racial identity!! -----------------------------------------------------------
+
 if (mr ==0) {
   //var asianper = .2; hispanicper = .3; blackper = .1, indianper = .02, pacificper = .08, whiteper = .3
   //                    Kauai        `            honoloulu                       hawaaii                        kalawo                          lycoming                         sanilac                           deer lodge                    indiana                            cheyenne                          baker                      clinch                                          quitman                    
@@ -59,7 +64,7 @@ if(mr==1){
   raw_races = [.50,.1,.1,.1,.1,.1,  .429,.097,.028,.003,.095,.22,   .216,.126,.008,.006,.13,.34,   .08,.011,.001,.001,.50,.261,    .007,.019,.047,.002,.001,.923,  .01,.037,.01,.01,.01,.90,   .01,0.03,.001,.014,.01,.92,    .012,.013,.026,.001,.002,.95,   .005,.12,.008,.014,.001,.84,    .001,.056,.45,.004,.001,.48,    0.003, 0.053, 0.274, 0.01, 0.001, 0.652,  0.003, 0.018, 0.477, 0.007, 0, .49]
   var state = ["VA", "NO", "YO", "HI", "PA", "MI", "MT", "PA", "CO", "GA", "GA", "GA"];
   populations = [3640, 47609, 8918, 4, 175, 65, 14, 134, 0, 0, 0, 0]  
-  percentages = [25, 18, 30, 15, 1, 1, 1, 1, 0.0, 0.0, 0.0, 0.0]
+  percentages = [20.0036866987459665524, 0.0016056534508787964, 0.0015051702798738371, 0.00096602317742693587,]
   totalcitynumbers = [ 72029,992605,198449,88,115248,41409,9085,86364,1848,3150,6829,2335]
   var county = ["Kauai County", "Honolulu County", "Hawaii County", "Kalawao County", "Lycoming County", "Sanilac County", "Deer Lodge County", "Indiana County", "Cheyenne County", "Baker County","Clinch County", "Quitman County"];
 
@@ -146,7 +151,7 @@ var multiracialNumber = [];
   text("counties", topicLinex, topicLiney+explaintxt);
 
   stroke(255);strokeWeight(3);
-  var lengthMost = [100, 206,94]; topicLiney = topicLiney+7;
+  var lengthMost = [100, 206,94]; topicLiney = topicLiney+5;
   line(topicLinex+((chosenMR.length)+(are.length))*linespace+10, topicLiney, topicLinex+((chosenMR.length)+(are.length))*linespace+lengthMost[cs], topicLiney);
   var lengthRace =[ 230, 230, 285, 240, 380, 230, 285, 240, 400, 280, 237, 400, 293, 455, 410];
   line(topicLinex, topicLiney, topicLinex+lengthRace[mr], topicLiney);
@@ -161,12 +166,7 @@ var multiracialNumber = [];
   var topy = ycanvas/1.5; bottomy = topy*2.2;
   for (var i = 0; i <= 5; i++) {
     fill(color(gray[i]));
-    if( d == 500){
-      arc(leftx/2, topy/2, d, d, lastAngle, lastAngle+radians(angles[i+(24*cs)]));
-    }
-    else{
-      arc(leftx/2, topy/2, diameter, diameter, lastAngle, lastAngle+radians(angles[i+(24*cs)]));
-    }
+    arc(leftx/2, topy/2, diameter, diameter, lastAngle, lastAngle+radians(angles[i+(24*cs)]));
     lastAngle += radians(angles[i+(24*cs)]);
     fill(color('#152F48')); ellipse(leftx/2, topy/2, smallcircle, smallcircle);
   }
@@ -203,16 +203,16 @@ var multiracialNumber = [];
 
   // top left
   textSize(txtsize); text(multiper[0+(4*cs)], leftx,topy-yoffset);
-  textSize(smlltxtsz); text(chosenMR, leftx,topy+racoffset); text(multiracialNumber[0+(4*cs)],leftx,topy+boffset); 
+  textSize(smlltxtsz); text("are "+chosenMR, leftx,topy+racoffset); text(multiracialNumber[0+(4*cs)],leftx,topy+boffset); 
   // top right
   textSize(txtsize); text(multiper[1+(4*cs)], rightx,topy-yoffset);
-  textSize(smlltxtsz); text(chosenMR, rightx,topy+racoffset); text(multiracialNumber[1+(4*cs)],rightx,topy+boffset); 
+  textSize(smlltxtsz); text("are "+chosenMR, rightx,topy+racoffset); text(multiracialNumber[1+(4*cs)],rightx,topy+boffset); 
   // bottom right
   textSize(txtsize); text(multiper[2+(4*cs)], rightx,bottomy-yoffset);
-  textSize(smlltxtsz); text(chosenMR, rightx,bottomy+racoffset); text(multiracialNumber[2+(4*cs)],rightx,bottomy+boffset); 
+  textSize(smlltxtsz); text("are "+chosenMR, rightx,bottomy+racoffset); text(multiracialNumber[2+(4*cs)],rightx,bottomy+boffset); 
   // bottom left
   textSize(txtsize); text(multiper[3+(4*cs)], leftx,bottomy-yoffset);
-  textSize(smlltxtsz); text(chosenMR, leftx,bottomy+racoffset); text(multiracialNumber[3+(4*cs)],leftx,bottomy+boffset); 
+  textSize(smlltxtsz); text("are "+chosenMR, leftx,bottomy+racoffset); text(multiracialNumber[3+(4*cs)],leftx,bottomy+boffset); 
 
   //upper left, asian
   var leftx = xcanvas/4; rightx = leftx*3; var topy = ycanvas/3; bottomy = topy*2.2; var beg = 0, stop = 0; var start = []; var end = [];
@@ -227,7 +227,7 @@ var multiracialNumber = [];
     if (rmag > smallcircle/2 && rmag < diameter/2 && theta < end[j-(24*cs)]+90 && theta > start[j-(24*cs)]+90){
     console.log(alone_race[j]); fill(color('#152F48')); ellipse(leftx, topy, smallcircle, smallcircle);
     textSize(txtsize);   textStyle(BOLD); fill(255); text(alone_race_per[j], leftx,topy-yoffset);
-    textSize(smlltxtsz); text(alone_race[j]+" Alone", leftx,topy+racoffset); text(Math.ceil(eachrace_per[j]),leftx,topy+boffset);
+    textSize(smlltxtsz); text("are "+alone_race[j]+" alone", leftx,topy+racoffset); text(Math.ceil(eachrace_per[j]),leftx,topy+boffset);
     } }
 
   //upper right
@@ -243,7 +243,7 @@ var multiracialNumber = [];
     if (rmag > smallcircle/2 && rmag < diameter/2 && theta < end[j-(24*cs)]+90 && theta > start[j-(24*cs)]+90){
     console.log(alone_race[j]); fill(color('#152F48')); ellipse(xpos, ypos, smallcircle, smallcircle);
     textSize(txtsize);   textStyle(BOLD); fill(255); text(alone_race_per[j+6], xpos,ypos-yoffset);
-    textSize(smlltxtsz); text(alone_race[j]+" Alone", xpos,ypos+racoffset); text(Math.ceil(eachrace_per[j+6]),xpos,ypos+boffset);
+    textSize(smlltxtsz); text("are "+alone_race[j]+" alone", xpos,ypos+racoffset); text(Math.ceil(eachrace_per[j+6]),xpos,ypos+boffset);
     } }
 
    //bottom right
@@ -259,7 +259,7 @@ var multiracialNumber = [];
     if (rmag > smallcircle/2 && rmag < diameter/2 && theta < end[j-(24*cs)]+90 && theta > start[j-(24*cs)]+90){
     console.log(alone_race[j]); fill(color('#152F48')); ellipse(xpos, ypos, smallcircle, smallcircle);
     textSize(txtsize);   textStyle(BOLD); fill(255); text(alone_race_per[j+12], xpos,ypos-yoffset);
-    textSize(smlltxtsz); text(alone_race[j]+" Alone", xpos,ypos+racoffset); text(Math.ceil(eachrace_per[j+12]),xpos,ypos+boffset);
+    textSize(smlltxtsz); text("are "+alone_race[j]+" alone", xpos,ypos+racoffset); text(Math.ceil(eachrace_per[j+12]),xpos,ypos+boffset);
     } }
 
   //bottom left
@@ -275,7 +275,7 @@ var multiracialNumber = [];
     if (rmag > smallcircle/2 && rmag < diameter/2 && theta < end[j-(24*cs)]+90 && theta > start[j-(24*cs)]+90){
     console.log(alone_race[j]); fill(color('#152F48')); ellipse(xpos, ypos, smallcircle, smallcircle);
     textSize(txtsize);   textStyle(BOLD); fill(255); text(alone_race_per[j+18], xpos,ypos-yoffset);
-    textSize(smlltxtsz); text(alone_race[j]+" Alone", xpos,ypos+racoffset); text(Math.ceil(eachrace_per[j+18]),xpos,ypos+boffset);
+    textSize(smlltxtsz); text("are "+alone_race[j]+" alone", xpos,ypos+racoffset); text(Math.ceil(eachrace_per[j+18]),xpos,ypos+boffset);
     }  
   }
   
@@ -295,7 +295,22 @@ var multiracialNumber = [];
 // if within range
 // for circle = diamter_big, diamter_big = <500, diatmer_big ++
 
-
+    if (initialPage == 0) {
+    fill(21,47,72,175)
+    rect(0,0,xcanvas,ycanvas)
+    push()
+    fill(255); noStroke()
+    ellipse(xcanvas/2,ycanvas/2, 960,960);
+    fill(color('#152F48')); textAlign(CENTER); textStyle(BOLD); textSize(40);
+    text("Multiracial Analysis of Counties",(xcanvas/2),(ycanvas/2)-250); text("Across the United States",(xcanvas/2),(ycanvas/2)-235+40)
+     textSize(30); textAlign(LEFT);
+    text("What community fosters multiracial people? Interact with the data to see the communities with the highest, median, and lowest percentage of multiracial individuals*.",xcanvas/4,ycanvas/3+80,700,800)
+    textSize(30);
+    text("*Multiracial individuals are considered to be those who identify as 50% one race and 50% another. For example, a white asian is someone who is 50% asian and 50% white.",xcanvas/4,ycanvas/3+275,700,800)
+    textAlign(CENTER);
+    text("click to explore",xcanvas/2,ycanvas/2+350)
+    pop()
+  }
 
 }
 
@@ -306,6 +321,8 @@ var multiracialNumber = [];
 
 
 function mousePressed() {
+
+  initialPage = 1;
 
   var boxheight = 45, boxwidth = 142, xover = .785, yover = .93;
   if (mouseX > xcanvas*xover && mouseX < xcanvas*xover+boxwidth && mouseY > ycanvas*yover && mouseY < (ycanvas*yover)+boxheight) {
