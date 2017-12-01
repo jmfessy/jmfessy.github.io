@@ -8,17 +8,18 @@ var headerTxtSize = 35; var subTxtSize = headerTxtSize/1.5; var detailTxt = head
 var topdown = 70, economicstatdown = topdown*2;
 
 //money
-var moneyx2 = 90, moneyy2= 45, moneyoffsety = (moneyy2/3), moneyoffsetx = +(moneyx2/2);
+var moneyx2 = 91.5, moneyy2= 45, moneyoffsety = (moneyy2/3), moneyoffsetx = +(moneyx2/2);
 
 //bottles
 var OGbottleimg
 var bottleimg
 var bottlescaler = 3;
+var moneygreen = '#5d7f3a'
 
 
 // test code
-var moniesN = 14;
-var bottlesN = 17;
+var moniesN = 16;
+var bottlesN = 18;
 var itemprice = "$0.80";
 
 // ------------------------------SETUP---------------------------------
@@ -29,6 +30,24 @@ function setup() {
   OGbottleimg = loadImage("OG.jpg");
   bottleimg =  loadImage("currentBottle.jpg");
 }
+
+//-------------------------------DATA---------------------------------------------------------------------------------------
+//           60   61    62     63   64   65     66      67    68     69      70    71     72     73     74     75    76     77    78    79    80    81    82   83      84   85     86    87     88    89    90     91     92     93     94     95   96      97    98      99     00    01       02    03   04      05    06    07    08       09   10    11    12    13      14    15     16    17
+var coke = [.05, 0.05, 0.05, 0.05, 0.14, 0.14, 0.14,  0.14,  0.12,  0.12,  0.12,  0.12,  0.12,  0.12,  0.15,  0.15, 0.15,  0.15, 0.15, 0.15, 0.15, 0.15, 0.35, 0.35, 0.35, 0.16,  0.16, 0.16,  0.16, 0.16, 0.16,  0.16,  0.29 , 0.29,  0.17,  0.18, 0.18,  0.18,  0.18,  0.18,  0.18,  0.18,  0.18,  0.18, 0.18, 0.19,  0.19, 0.19,  0.19,  0.37, 0.37, 0.33, 0.33,  0.35,  0.32,  0.32,  0.32,  0.32 ];
+
+
+// years
+var chosenitem = coke;
+var time = []; var timeN =[];
+
+for (var i = 1; i <= chosenitem.length-1; i++) {
+  var num = 2017-i;
+  time.push(num.toString());
+  timeN[i]=i;
+}
+
+//             1960
+var inflate = [1.36,  202,  1.33,  1.64,  0.97,  1.92 , 3.46,  3.04,  4.72,  6.2, 5.57,  3.27,  3.41,  8.71,  12.34, 6.94,  4.86,  6.7, 9.02,  13.29, 12.52, 8.92,  3.83,  3.79,  3.95,  3.8, 1.1, 4.43,  4.42,  4.65,  6.11,  3.06,  2.9, 2.75,  2.67,  2.54,  3.32,  1.7, 1.61,  2.68,  3.39,  1.55,  2.38,  1.88,  3.26,  3.42,  2.54,  4.08,  0.09,  2.72,  1.5, 2.96,  1.74,  1.5, 0.76,  0.73,  2.07,  2.23]
 
 //-------------------------------FUNCTION---------------------------------------------------------------------------------------
 
@@ -61,7 +80,7 @@ function draw(){
     text(itemstat, windowWidth/leftindent, windowHeight-economicstatdown);
 
     textSize(detailTxt);
-    var itemstat1 = "Coca Cola"; var istat1length = itemstat1.length; var cokedetails = "Coke Bottle = $0.05"; var beginning = "1960"; 
+    var itemstat1 = "Coca Cola"; var istat1length = itemstat1.length; var cokedetails = "Coke Bottle = $0.05";
     var itemstat2 = "Corn Flakes";
     var itemstat3 = "Oreos";
     text(itemstat1, windowWidth/20, windowHeight-topdown), text(itemstat2, windowWidth/20+95, windowHeight-topdown); text(itemstat3,windowWidth/20+205,windowHeight-topdown);
@@ -74,17 +93,65 @@ function draw(){
 
     pop()
 
-    //graph
+
+        //GRAPH
+
+    //graph Lines
     push()
     line(windowWidth/leftindent,windowHeight/2,windowWidth-windowWidth/leftindent,windowHeight/2)
 
-    var offsetsides = 20; strokeWeight(2)
-    line(windowWidth/2- offsetsides, windowHeight/2+10, windowWidth/2 - offsetsides, windowHeight/2-10); textAlign(CENTER)
-    text("2017", windowWidth/2- offsetsides+2, windowHeight/2 +40)
-    line(windowWidth/leftindent+offsetsides, windowHeight/2+10, windowWidth/leftindent+offsetsides, windowHeight/2-10)
-    text(beginning, windowWidth/leftindent+ offsetsides+2, windowHeight/2 + 40)
-    line(windowWidth/2+(offsetsides*5)+moneyx2, windowHeight/2+10, windowWidth/2+(offsetsides*5)+moneyx2, windowHeight/2-10)
+    var offsetsides = 20; strokeWeight(2);  textAlign(CENTER);
+    line(windowWidth/2- offsetsides, windowHeight/2+10, windowWidth/2 - offsetsides, windowHeight/2-10); // RIGHT  windowWidth/2- offsetsides
+    line(windowWidth/leftindent+offsetsides, windowHeight/2+10, windowWidth/leftindent+offsetsides, windowHeight/2-10) // LEFT  windowWidth/leftindent+offsetsides
 
+
+    //text("2017", windowWidth/2- offsetsides+2, windowHeight/2 +40)
+    //text(time[time.length-1], windowWidth/leftindent+ offsetsides+2, windowHeight/2 + 40)
+    //money 
+    line(windowWidth/2+(offsetsides*5)+moneyx2, windowHeight/2+10, windowWidth/2+(offsetsides*5)+moneyx2, windowHeight/2-10)
+    pop()
+
+
+    //axis for coke
+    push()
+    stroke(color(redcolor)); strokeWeight(5);
+
+    var xstart = windowWidth/leftindent+offsetsides; var xright =  windowWidth/2- offsetsides; var xlength = xright - xstart; 
+    var ycenter = windowHeight/2; var ymax = economicstatdown + 10; var ylength = ycenter-ymax; var yscaler = .40;
+    var xpos; var ypos; 
+    var xprev = xstart ;var yprev = ycenter + (chosenitem[0]*ylength/yscaler);
+    for (var i = 0; i <= timeN.length-1; i++) {
+      xpos = xstart + (i*xlength/timeN.length);
+      ypos = ycenter + (chosenitem[i]*ylength/yscaler);
+      line(xprev,yprev,xpos,ypos);
+      xprev = xpos;
+      yprev = ypos;
+    }
+
+    pop()
+
+    // axis for inflation
+    push()
+    stroke(color(moneygreen)); strokeWeight(5);
+
+    var xstart = windowWidth/leftindent+offsetsides; var xright =  windowWidth/2- offsetsides; var xlength = xright - xstart; 
+    var ycenter = windowHeight/2; var ymax = economicstatdown + 10; var ylength = ycenter-ymax; var yscaleri = 250;
+    var xpos; var ypos; 
+    var xprev = xstart ;var yprev = ycenter - (inflate[0]*ylength/yscaleri);
+    for (var i = 1; i <= timeN.length; i++) {
+      xpos = xstart + (i*xlength/timeN.length);
+      ypos = ypos - (inflate[i]*ylength/yscaleri);
+      line(xprev,yprev,xpos,ypos);
+      xprev = xpos;
+      yprev = ypos;
+    }
+    pop()
+
+
+    push()
+    var offsetsides = 20; strokeWeight(2);  textAlign(CENTER);
+    text("2017", windowWidth/2- offsetsides+2, windowHeight/2 +40)
+    text(time[time.length-1], windowWidth/leftindent+ offsetsides+2, windowHeight/2 + 40)
     pop()
 
     //neurath approach
@@ -137,35 +204,55 @@ function draw(){
       
       }
     
+    push()
+    strokeWeight(2); fill(0); var scrubheight = windowHeight/2- economicstatdown; textAlign(CENTER)
+    //scrubber
+    if (mouseX < (windowWidth/2) - leftindent) {
+      if (mouseY < (windowHeight/2) + scrubheight) {
+        if(mouseY > (windowHeight/2) - scrubheight) {
+          if(mouseX > windowWidth/leftindent+leftindent){
+
+            line(mouseX, windowHeight/2-10, mouseX, windowHeight/2+10);
+            var scrublen = (windowWidth/2) - leftindent - (windowWidth/leftindent+leftindent); var leftx = windowWidth/leftindent+leftindent; var mousepos = mouseX-leftx;
+            text("stuff",mouseX,windowHeight/2 +40
+
+
+        }
+
+      }
+    }
+  }
+  pop()
+
 
     //bottles stacking
-      for (var b = 0; b <= bottlesN; b++) {
+      for (var b = 0; b <= bottlesN-1; b++) {
         var OGheight = (OGbottleimg.height)/bottlescaler; var OGwidth = (OGbottleimg.width)/bottlescaler;
           var x = windowWidth/2+ (offsetsides*9.5)+OGwidth+((b-0)*(OGwidth+10));
         var y = windowHeight/2+10+ OGheight +(0*(OGheight+10));
 
-        if(b >=8){
-          var j = 8;
+        if(b >=9){
+          var j = 9;
           var y = windowHeight/2+10+OGheight +(1*(OGheight+10));
           var x = windowWidth/2+ (offsetsides*9.5)+OGwidth+((b-j)*(OGwidth+10));
         }
-        if(b >=16){
-          var j = 16;
+        if(b >=18){
+          var j = 18;
           var y = windowHeight/2+10+OGheight +(2*(OGheight+10));
           var x = windowWidth/2+ (offsetsides*9.5)+OGwidth+((b-j)*(OGwidth+10));
         }
-        if(b >=24){
-          var j = 24;
+        if(b >=27){
+          var j = 27;
           var y = windowHeight/2+10+OGheight +(3*(OGheight+10));
           var x = windowWidth/2+ (offsetsides*9.5)+OGwidth+((b-j)*(OGwidth+10));
         }
-        if(b >=32){
-          var j = 32;
+        if(b >=36){
+          var j = 36;
           var y = windowHeight/2+10+OGheight +(4*(OGheight+10));
           var x = windowWidth/2+ (offsetsides*9.5)+OGwidth+((b-j)*(OGwidth+10));
         }
-        if(b >=40){
-          var j = 40;
+        if(b >=45){
+          var j = 45;
           var y = windowHeight/2+10+OGheight +(5*(OGheight+10));
           var x = windowWidth/2+ (offsetsides*9.5)+OGwidth+((b-j)*(OGwidth+10));
         }
@@ -173,7 +260,6 @@ function draw(){
         image(OGbottleimg, x+2,y-83, bottleimg.width/bottlescaler, bottleimg.height/bottlescaler); 
 
       }
-    
 
 
   }
