@@ -5,7 +5,8 @@
 var backgroundcolor ="#e9e6dd"; var redcolor = "#fd0319";
 var leftindent = 20;
 var headerTxtSize = 35; var subTxtSize = headerTxtSize/1.5; var detailTxt = headerTxtSize/2.5;
-var topdown = 70, economicstatdown = topdown*2;
+var topdown = 70, economicstatdown = topdown*2; 
+
 var textcolor = '#404041'
 
 //money
@@ -16,6 +17,7 @@ var OGbottleimg
 var bottleimg
 var bottlescaler = 3;
 var moneygreen = '#5d7f3a'
+var state
 
 
 // ------------------------------SETUP---------------------------------
@@ -52,6 +54,34 @@ var inflateN = [1.36,  0.37,  1.33,  1.64,  0.97,  1.92 , 3.46,  3.04,  4.72,  6
 function draw(){
     background(color(backgroundcolor));
     fill(color(textcolor)); 
+    var y = windowHeight-topdown+subTxtSize;
+
+    push()
+
+    var yl = y +5; strokeWeight(1)
+    var xdimcokeL = windowWidth/leftindent; var xdimcokeR = windowWidth/leftindent+65;
+    var xdimcornL = xdimcokeR +5; var xdimcornR = xdimcornR +65;
+    var xdimoreoL = xdimcornR +5; var xdimoreoR = xdimoreoL+65;
+
+      console.log(state)
+      if(state == 0){
+        line(xdimcokeL, yl, xdimcokeR, yl);
+      }if(state == 1){
+        line(xdimcornL, yl, xdimcornR, yl);
+      }if(state == 2){
+        line(xdimoreoL, yl, xdimoreoR, yl);
+      }
+
+
+      if(mouseY > yl-40){
+      if( mouseX > xdimcokeL){
+        if(mouseX < xdimcokeR){
+        line(xdimcokeL, yl, xdimcokeR, yl)
+        }
+      }}
+      line(xdimcokeL, yl, xdimcokeR, yl)
+   // }
+    pop()
 
     //title
     push() 
@@ -81,7 +111,6 @@ function draw(){
     var itemstat1 = "Coca Cola"; var istat1length = itemstat1.length; var cokedetails = "Coke Bottle = $0.05";
     var itemstat2 = "Corn Flakes";
     var itemstat3 = "Oreos";
-    var y = windowHeight-topdown+subTxtSize
     text(itemstat1, windowWidth/20, y), text(itemstat2, windowWidth/20+95, y); text(itemstat3,windowWidth/20+205,y);
 
     // PUT IN an "If" statement about the line underneath and what item stat you're using
@@ -184,7 +213,7 @@ function draw(){
     var moniesN = 1; var bottlesN
 
     for (var i = 0; i < yearindex; i++) {
-      moniesN = moniesN + (inflateN[i]*moniesN/100); console.log(moniesN)
+      moniesN = moniesN + (inflateN[i]*moniesN/100);
       bottlesN = Math.round(itemprice/coke[0]);
     }
 
@@ -285,9 +314,33 @@ function draw(){
         image(OGbottleimg, x+2,y-83, bottleimg.width/bottlescaler, bottleimg.height/bottlescaler); 
 
       }
-
-
-
   }
+
+function mouseClicked() {
+      var yl = y +5;        var y = windowHeight-topdown+subTxtSize;
+    var xdimcokeL = windowWidth/leftindent; var xdimcokeR = windowWidth/leftindent+65;
+    var xdimcornL = xdimcokeR +5; var xdimcornR = xdimcornR +65;
+    var xdimoreoL = xdimcornR +5; var xdimoreoR = xdimoreoL+65;
+  if(mouseY > yl-40){
+    if( mouseX > xdimcokeL){
+    if(mouseX < xdimcokeR){
+        var state = 0;
+    }
+    }
+    if( mouseX > xdimcornL){
+    if(mouseX < xdimcornR){
+        var state = 1;
+    }
+    }
+    if( mouseX > xdimoreoL){
+    if(mouseX < xdimoreoR){
+        var state = 2;
+    }
+    }
+  }
+}
+
+  
+
 
 // ------------------------------FUNCTIONS for INTERACTION---------------------------------
