@@ -214,7 +214,10 @@ function draw(){
 
             line(mouseX, windowHeight/2-10, mouseX, windowHeight/2+10);
             var scrublen = (windowWidth/2) - leftindent - (windowWidth/leftindent+leftindent); var leftx = windowWidth/leftindent+leftindent; var mousepos = mouseX-leftx;
-            text("stuff",mouseX,windowHeight/2 +40
+            
+            var mouseper = (mousepos)/scrublen; 
+            console.log(mouseper)
+            text((Math.round(mouseper*timeN.length)+1960).toString(),mouseX,windowHeight/2 +40);
 
 
         }
