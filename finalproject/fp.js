@@ -153,6 +153,7 @@ function draw(){
 
     var xthi =   windowWidth-windowWidth/leftindent-moneyx2-(leftindent*5.5)+5;
     text("1960", windowWidth-windowWidth/leftindent-62, economicstatdown);
+   // text("1960", xthi,windowHeight- economicstatdown +subTxtSize)
 
     	///HEHREHEHEHHREHE____-------------------------------------------------------
 
@@ -247,7 +248,10 @@ function draw(){
    			 for (var i = 0; i < yearindex; i++) {
       			moniesN = moniesN + (inflateN[i]*moniesN/100);
       			itemprice = chosenprice[yearindex];
-      			bottlesN = Math.round(itemprice/chosenprice[0]); 
+      			bottlesN = Math.round(itemprice*inflateN[i]/chosenprice[0]);
+      			if(state ==0){
+      				bottlesN = Math.round(itemprice*inflateN[i]/chosenprice[0]);
+      			}
     		}
     		noStroke()
             textAlign(RIGHT); textSize(subTxtSize)
@@ -265,8 +269,13 @@ function draw(){
    	for (var i = 0; i < yearindex; i++) {
      	moniesN = moniesN + (inflateN[i]*moniesN/100);
      	itemprice = chosenprice[yearindex];
-      	bottlesN = Math.round(itemprice/chosenprice[0]); 
+      	//bottlesN = Math.round(itemprice*inflateN[i]/chosenprice[0]);
+      	bottlesN = Math.round(itemprice*inflateN[i]/chosenprice[0]);
+      	if(state ==0){
+      	bottlesN = Math.round(itemprice*inflateN[i]/chosenprice[0]);
+      	}
    	}
+   	console.log(itemprice)
 
 
 // right side of the page
@@ -277,15 +286,15 @@ function draw(){
      text("$1 in " + "1960" + " is worth $8.19 in 2017", windowWidth-windowWidth/leftindent, windowHeight-economicstatdown+subTxtSize);
      textAlign(CENTER)
      text("2017", xthi, economicstatdown);
-     if(state == 0){
+      if(state == 0){
         moniesN =8.19;
-     	bottlesN = 6;
+     	bottlesN = 13;
       }if(state == 255){
         moniesN =8.19;
-    	bottlesN = 16;
+    	bottlesN = 21;
       }if(state == 2){
         moniesN =8.19;
-    	bottlesN = 20;
+    	bottlesN = 27;
       }
       pop()
     }
@@ -298,13 +307,13 @@ function draw(){
      text("2017", xthi, economicstatdown);
       if(state == 0){
         moniesN =8.19;
-     	bottlesN = 6;
+     	bottlesN = 13;
       }if(state == 255){
         moniesN =8.19;
-    	bottlesN = 16;
+    	bottlesN = 21;
       }if(state == 2){
         moniesN =8.19;
-    	bottlesN = 20;
+    	bottlesN = 27;
       }
       pop()
     }
@@ -315,15 +324,15 @@ function draw(){
       text("$1 in " + "1960" + " is worth $8.19 in 2017", windowWidth-windowWidth/leftindent, windowHeight-economicstatdown+subTxtSize);
       textAlign(CENTER)
      text("2017", xthi, economicstatdown);
-      if(state == 0){
+       if(state == 0){
         moniesN =8.19;
-     	bottlesN = 6;
+     	bottlesN = 13;
       }if(state == 255){
         moniesN =8.19;
-    	bottlesN = 16;
+    	bottlesN = 21;
       }if(state == 2){
         moniesN =8.19;
-    	bottlesN = 20;
+    	bottlesN = 27;
       }
       pop()
     }
@@ -334,15 +343,15 @@ function draw(){
       text("$1 in " + "1960" + " is worth $8.19 in 2017", windowWidth-windowWidth/leftindent, windowHeight-economicstatdown+subTxtSize);
       textAlign(CENTER)
      text("2017", xthi, economicstatdown);
-      if(state == 0){
+       if(state == 0){
         moniesN =8.19;
-     	bottlesN = 6;
+     	bottlesN = 13;
       }if(state == 255){
         moniesN =8.19;
-    	bottlesN = 16;
+    	bottlesN = 21;
       }if(state == 2){
         moniesN =8.19;
-    	bottlesN = 20;
+    	bottlesN = 27;
       }
       pop()
     }
@@ -444,7 +453,7 @@ function draw(){
 
    		image(bottleimg, windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-5,windowHeight/2-10+(bottleimg.height/10), bottleimg.width/bottlescaler, bottleimg.height/bottlescaler)
     	textAlign(CENTER)
-    	fill(color(redcolor)); text("$"+itemprice, windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler+12,windowHeight/2+45+(bottleimg.height/bottlescaler) );
+    	fill(color(redcolor)); //text("$"+itemprice, windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler+12,windowHeight/2+45+(bottleimg.height/bottlescaler) );
 
     	pop()
       for (var b = 0; b <= bottlesN-1; b++) {
@@ -457,34 +466,34 @@ function draw(){
        // var x = windowWidth/2+ (offsetsides*9.5)+OGwidth+((b-0)*(OGwidth+10));
        // var y = windowHeight/2+10+ OGheight +(0*(OGheight+10));
 
-        if(b >=8){
-          var j = 8;
+        if(b >=11){
+          var j = 11;
           y = y + OGheight + 5;
           x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
           x = x - ((OGwidth +17)*(b-j));
         }
-        if(b >=16){
-          var j = 16;
+        if(b >=22){
+          var j = 22;
           y = y + (OGheight + 5);
           x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
           x = x - ((OGwidth +17)*(b-j));        }
-        if(b >=24){
-          var j = 24;
+        if(b >=33){
+          var j = 33;
           y = y + (OGheight + 5);
           x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
-          x = x - ((OGwidth +17)*(b-j));
+          x = x - ((OGwidth +17)*(b-j)); 
         }
-        if(b >=32){
-          var j = 32;
+        if(b >=44){
+          var j = 44;
           y = y + (OGheight + 5);
           x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
-          x = x - ((OGwidth +17)*(b-j));
+          x = x - ((OGwidth +17)*(b-j)); 
         }
-        if(b >=40){
-          var j = 40;
+        if(b >=55){
+          var j = 55;
           y = y + (OGheight + 5);
           x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
-          x = x - ((OGwidth +17)*(b-j));
+          x = x - ((OGwidth +17)*(b-j)); 
         }
         image(OGbottleimg, x,y, bottleimg.width/bottlescaler, bottleimg.height/bottlescaler); 
       }
@@ -498,7 +507,7 @@ function draw(){
    		//image(bottleimg, windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-5,windowHeight/2-10+(bottleimg.height/10), bottleimg.width/bottlescaler, bottleimg.height/bottlescaler)
     	rect(windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-5,windowHeight/2+(bottleimg.height/10)+8, cornx,corny);
     	textAlign(CENTER)
-    	text("$"+itemprice, windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler+12,windowHeight/2+45+(bottleimg.height/bottlescaler) );
+    	//text("$"+itemprice, windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler+12,windowHeight/2+45+(bottleimg.height/bottlescaler) );
 
     	
       for (var b = 0; b <= bottlesN-1; b++) {
@@ -508,31 +517,49 @@ function draw(){
         x = x - (27 + OGwidth)*b;
         var y = windowHeight/2+(bottleimg.height/10) - 10;
 
-        if(b >=7){
-          var j = 7;
+        if(b >=9){
+          var j = 9;
           y = y + OGheight - 17;
           x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
           x = x - ((OGwidth +27)*(b-j));
         }
-        if(b >=14){
-          var j = 14;
+        if(b >=18){
+          var j = 18;
           y = y + OGheight - 17;
           x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
           x = x - ((OGwidth +27)*(b-j));        }
-        if(b >=21){
-          var j = 21;
+        if(b >=27){
+          var j = 27;
           y = y + OGheight - 17;
           x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
           x = x - ((OGwidth +27)*(b-j));
         }
-        if(b >=32){
-          var j = 32;
+        if(b >=36){
+          var j = 36;
           y = y + OGheight - 17;
           x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
           x = x - ((OGwidth +27)*(b-j));
         }
-        if(b >=40){
-          var j = 40;
+        if(b >=45){
+          var j = 45;
+          y = y + OGheight - 17;
+          x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
+          x = x - ((OGwidth +27)*(b-j));
+        }
+        if(b >=54){
+          var j = 54;
+          y = y + OGheight - 17;
+          x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
+          x = x - ((OGwidth +27)*(b-j));
+        }
+        if(b >=63){
+          var j = 63;
+          y = y + OGheight - 17;
+          x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
+          x = x - ((OGwidth +27)*(b-j));
+        }
+        if(b >=72){
+          var j = 72;
           y = y + OGheight - 17;
           x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
           x = x - ((OGwidth +27)*(b-j));
@@ -550,7 +577,7 @@ function draw(){
     	fill(color(redcolor)); var oreoc = 50; noStroke();
     	ellipse(windowWidth-windowWidth/leftindent-oreoc-13, windowHeight/2+(bottleimg.height/10+35), oreoc, oreoc)
     	textAlign(CENTER)
-    	text("$"+itemprice, windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler+12,windowHeight/2+45+(bottleimg.height/bottlescaler) );
+    	//text("$"+itemprice, windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler+12,windowHeight/2+45+(bottleimg.height/bottlescaler) );
     	oreoc =45;
     	
       for (var b = 0; b <= bottlesN-1; b++) {
@@ -564,36 +591,61 @@ function draw(){
        // var x = windowWidth/2+ (offsetsides*9.5)+OGwidth+((b-0)*(OGwidth+10));
        // var y = windowHeight/2+10+ OGheight +(0*(OGheight+10));
 
-        if(b >=6){
-          var j = 6;
+        if(b >=9){
+          var j = 9;
        	  x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/oreoscaler-4 - (offsetsides)-OGwidth;
           x = x - (2+ OGwidth)*(b-j);
           y = y + (OGheight + 23);
         }
-        if(b >=12){
-          var j = 12;
-       	  x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/oreoscaler-4 - (offsetsides)-OGwidth;
-          x = x - (2+ OGwidth)*(b-j);
-          y = y + (OGheight + 23);
-             }
         if(b >=18){
           var j = 18;
        	  x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/oreoscaler-4 - (offsetsides)-OGwidth;
           x = x - (2+ OGwidth)*(b-j);
           y = y + (OGheight + 23);
-        }
-        if(b >=24){
-          var j = 24;
+             }
+        if(b >=27){
+          var j = 27;
        	  x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/oreoscaler-4 - (offsetsides)-OGwidth;
           x = x - (2+ OGwidth)*(b-j);
           y = y + (OGheight + 23);
         }
-        if(b >=40){
-          var j = 40;
+        if(b >=36){
+          var j = 36;
        	  x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/oreoscaler-4 - (offsetsides)-OGwidth;
           x = x - (2+ OGwidth)*(b-j);
           y = y + (OGheight + 23);
         }
+        if(b >=45){
+          var j = 45;
+       	  x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/oreoscaler-4 - (offsetsides)-OGwidth;
+          x = x - (2+ OGwidth)*(b-j);
+          y = y + (OGheight + 23);
+        }
+        if(b >=54){
+          var j = 54;
+       	  x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/oreoscaler-4 - (offsetsides)-OGwidth;
+          x = x - (2+ OGwidth)*(b-j);
+          y = y + (OGheight + 23);
+        }
+        if(b >=63){
+          var j = 63;
+       	  x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/oreoscaler-4 - (offsetsides)-OGwidth;
+          x = x - (2+ OGwidth)*(b-j);
+          y = y + (OGheight + 23);
+        }
+        if(b >=72){
+          var j = 72;
+       	  x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/oreoscaler-4 - (offsetsides)-OGwidth;
+          x = x - (2+ OGwidth)*(b-j);
+          y = y + (OGheight + 23);
+        }
+        if(b >=81){
+          var j = 81;
+       	  x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/oreoscaler-4 - (offsetsides)-OGwidth;
+          x = x - (2+ OGwidth)*(b-j);
+          y = y + (OGheight + 23);
+        }
+
         //image(oreoimg, x,y, bottleimg.width/oreoscaler*2, bottleimg.height/oreoscaler); 
        	ellipse(x,y,oreoc,oreoc)
       }
