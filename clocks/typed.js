@@ -7,10 +7,10 @@ function setup() {
 }
 
 function draw() {
-	var hour = ["12","1","2","3","4","5","6","7","8","9","10","11","12","1","2","3","4","5","6","7","8","9","10","11"];
-	var minute = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59"];
-	var second = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"];
-	var date = new Date(),
+	 var hour = ["12","1","2","3","4","5","6","7","8","9","10","11","12","1","2","3","4","5","6","7","8","9","10","11"];
+  var minute = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59"];
+  var second = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"];
+  var date = new Date(),
     hours = date.getHours(),
     minutes = date.getMinutes(),
     seconds = date.getSeconds(),
@@ -20,129 +20,16 @@ function draw() {
     ms = date.getMilliseconds();
     background(255)
 
+    h = hours;
 if (hours > 12){
     var h = hours-12;
   }
 
 textSize(40);
-if (h == 1){
-  text("hour", xhour, ystart); 
-}
+  for (i = 0; i <= h; i++) {
+    text("hour",xhour,ystart+(dy*i))
+  }
 
-if (h == 2){
-  text("hour", xhour, ystart+(dy*5));
-  text("hour", xhour, ystart+(dy*4));
-  text("hour", xhour, ystart+(dy*3));
-  text("hour", xhour, ystart+(dy*2));
-  text("hour", xhour, ystart+dy);
-  text("hour", xhour, ystart);
-}
-
-if (h == 3){
-  text("hour", xhour, ystart+(dy*2));
-  text("hour", xhour, ystart+dy);
-  text("hour", xhour, ystart);
-}
-
-if (h == 4){
-  text("hour", xhour, ystart+(dy*3));
-  text("hour", xhour, ystart+(dy*2));
-  text("hour", xhour, ystart+dy);
-  text("hour", xhour, ystart);
-}
-
-if (h == 5){
-  text("hour", xhour, ystart+(dy*4));
-  text("hour", xhour, ystart+(dy*3));
-  text("hour", xhour, ystart+(dy*2));
-  text("hour", xhour, ystart+dy);
-  text("hour", xhour, ystart);
-}
-
-if (h == 6){
-  text("hour", xhour, ystart+(dy*5));
-  text("hour", xhour, ystart+(dy*4));
-  text("hour", xhour, ystart+(dy*3));
-  text("hour", xhour, ystart+(dy*2));
-  text("hour", xhour, ystart+dy);
-  text("hour", xhour, ystart);
-}
-
-if (h == 7){
-  text("hour", xhour, ystart+(dy*6));
-  text("hour", xhour, ystart+(dy*5));
-  text("hour", xhour, ystart+(dy*4));
-  text("hour", xhour, ystart+(dy*3));
-  text("hour", xhour, ystart+(dy*2));
-  text("hour", xhour, ystart+dy);
-  text("hour", xhour, ystart);
-}
-
-if (h == 8){
-  text("hour", xhour, ystart+(dy*7));
-  text("hour", xhour, ystart+(dy*6));
-  text("hour", xhour, ystart+(dy*5));
-  text("hour", xhour, ystart+(dy*4));
-  text("hour", xhour, ystart+(dy*3));
-  text("hour", xhour, ystart+(dy*2));
-  text("hour", xhour, ystart+dy);
-  text("hour", xhour, ystart);
-}
-
-if (h == 9){
-  text("hour", xhour, ystart+(dy*8));
-  text("hour", xhour, ystart+(dy*7));
-  text("hour", xhour, ystart+(dy*6));
-  text("hour", xhour, ystart+(dy*5));
-  text("hour", xhour, ystart+(dy*4));
-  text("hour", xhour, ystart+(dy*3));
-  text("hour", xhour, ystart+(dy*2));
-  text("hour", xhour, ystart+dy);
-  text("hour", xhour, ystart);
-}
-
-if (h == 10){
-  text("hour", xhour, ystart+(dy*9));
-  text("hour", xhour, ystart+(dy*8));
-  text("hour", xhour, ystart+(dy*7));
-  text("hour", xhour, ystart+(dy*6));
-  text("hour", xhour, ystart+(dy*5));
-  text("hour", xhour, ystart+(dy*4));
-  text("hour", xhour, ystart+(dy*3));
-  text("hour", xhour, ystart+(dy*2));
-  text("hour", xhour, ystart+dy);
-  text("hour", xhour, ystart);
-}
-
-if (h == 11){
-  text("hour", xhour, ystart+(dy*10));
-  text("hour", xhour, ystart+(dy*9));
-  text("hour", xhour, ystart+(dy*8));
-  text("hour", xhour, ystart+(dy*7));
-  text("hour", xhour, ystart+(dy*6));
-  text("hour", xhour, ystart+(dy*5));
-  text("hour", xhour, ystart+(dy*4));
-  text("hour", xhour, ystart+(dy*3));
-  text("hour", xhour, ystart+(dy*2));
-  text("hour", xhour, ystart+dy);
-  text("hour", xhour, ystart);
-}
-
-if (h == 12){
-  console.log("here")
-  text("hour", xhour, ystart+(dy*11));
-  text("hour", xhour, ystart+(dy*10));
-  text("hour", xhour, ystart+(dy*9));
-  text("hour", xhour, ystart+(dy*8));
-  text("hour", xhour, ystart+(dy*7));
-  text("hour", xhour, ystart+(dy*6));
-  text("hour", xhour, ystart+(dy*5));
-  text("hour", xhour, ystart+(dy*4));
-  text("hour", xhour, ystart+(dy*3));
-  text("hour", xhour, ystart+(dy*2));
-  text("hour", xhour, ystart+dy);
-  text("hour", xhour, ystart);
-}
 
 textSize(9.75)
 
@@ -158,5 +45,4 @@ for (var i = 0; i <=seconds; i++) {
   text("second", xsec,ysec-(dysec*i))
 }
 
-
-  }
+}
