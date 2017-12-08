@@ -139,7 +139,7 @@ function draw(){
     text(itemstat, windowWidth/leftindent, windowHeight-economicstatdown+subTxtSize);
 
     textSize(detailTxt);
-    text("Inflation is something everyone is aware of, but don’t truly understand in context. This graph provides the context by comparing to everyday items.", windowWidth/leftindent,topdown+detailTxt+8)
+    text("Inflation is something most people are aware of but is difficult to contextualize and understand its effects in everyday life. This graph provides the context by comparing to everyday items.", windowWidth/leftindent,topdown+detailTxt+8)
     var itemstat1 = "Coca Cola"; var istat1length = itemstat1.length; var cokedetails = "Coke Bottle = $0.05";
     var itemstat2 = "Corn Flakes";
     var itemstat3 = "Oreos";
