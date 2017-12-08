@@ -19,6 +19,8 @@ var bottlescaler = 3;
 var moneygreen = '#5d7f3a'
 var state = 0
 var itemprice
+var cerealimg
+var oreoimg
 
 // ------------------------------SETUP---------------------------------
 
@@ -27,14 +29,16 @@ function setup() {
   background(color(backgroundcolor));
   OGbottleimg = loadImage("OG.jpg");
   bottleimg =  loadImage("currentBottle.jpg");
+  cerealimg = loadImage("cereal.jpg")
+  oreoimg = loadImage("oreo.jpg")
 }
 
 //-------------------------------DATA---------------------------------------------------------------------------------------
 //           60   61    62     63   64   65     66      67    68     69      70    71     72     73     74     75    76     77    78    79    80    81    82   83      84   85     86    87     88    89    90     91     92     93     94     95   96      97    98      99     00    01       02    03   04      05    06    07    08       09   10    11    12    13      14    15     16    17
 var coke = [0.05, 0.05, 0.05, 0.05, 0.14, 0.14, 0.14,  0.14,  0.12,  0.12,  0.12,  0.12,  0.12,  0.12,  0.15,  0.15, 0.15,  0.15, 0.15, 0.15, 0.15, 0.15, 0.35, 0.35, 0.35, 0.16,  0.16, 0.16,  0.16, 0.16, 0.16,  0.16,  0.29 , 0.29,  0.17,  0.18, 0.18,  0.18,  0.18,  0.18,  0.18,  0.18,  0.18,  0.18, 0.18, 0.19,  0.19, 0.19,  0.19,  0.37, 0.37, 0.33, 0.33,  0.35,  0.32,  0.32,  0.32,  0.32 ]; 
-//          	 60   	   61    62       63  	 64  	 65    	 66    	  67     68       69     70   	  71     72       73     74   	  75     76      77 	   78    79   	 80   			 81       82     83      84      85      86       87     88      89      90      91      92      93      94       95     96       97     98      99      00      01      02      03       04      05    06        07      08     09       10      11     12      13      14      15       16    17
-var cflakes = [ 0.27,	0.345,	0.27,	0.345,	0.435,	0.375,	0.375,	0.435,	0.39,	0.435,	0.38,	0.4725,	0.37,	0.375,	0.43,	0.675,	0.69,	0.75,	0.8625,	0.885,	0.937894737,	1.12,	0.125,	0.99,	1.35,	1.09,	1.39,	1.4925,	1.48,	1.69,	1.99,	2.19,	1.99,	1.29,	2.175,	2.175,	2.175,	2.59,	2.29,	2.29,	2.99,	2.99,	2.99,	2.99,	4.485,	4.485,	4.485,	4.485,	4.485,	4.485,  4.485,  5.685,	5.685,	5.685,	4.19,	4.19,	4.19,	2.7 ];
-var oreo = 		[0.23,	0.41,	0.44,	0.4,	0.35,	0.39,	0.39,	0.44,	0.41,	0.46,	0.43,	0.53,	0.44,	0.47,	0.53,	0.85,	0.75,	0.85,	0.76,	1.01,	0.95,			1.28,	1.25,	1.40,	1.29,	1.64,	1.22,	1.43,	1.79,	1.79,	6.46,	5.74,	1.43,	2.95,	1.79,	3.27,	3.27,	3.27,	3.27,	3.27,	3.27,	3.27,	3.27,	3.27,	2.15,	2.15,	2.15,	2.15,	3.43,	3.43,	3.43,	3.43,	4.26,	4.62,	4.62,	4.62,	4.62,	2.88];
+//          	 60   	   61    62       63  	 64  	 65    	 66    	  67     68       69     70   	  71     72       73     74   	  75     76      77 	   78    79   	 80   	 81       82     83      84      85      86       87     88      89      90      91      92      93      94       95     96       97     98      99      00      01      02      03       04      05    06        07      08     09       10      11     12      13      14      15       16    17
+var cflakes = [ 0.27,	0.35,	0.27,	0.35,	0.44,	0.38,	0.38,	0.44,	0.39,	0.44,	0.38,	0.47,	0.37,	0.38,	0.43,	0.68,	0.69,	0.75,	0.86,	0.89,	0.94,	1.12,	0.13,	0.99,	1.35,	1.09,	1.39,	1.50,	1.48,	1.69,	1.99,	2.19,	1.99,	1.29,	2.18,	2.18,	2.18,	2.59,	2.29,	2.29,	2.99,	2.99,	2.99,	2.99,	4.49,	4.49,	4.49,	4.49,	4.49,	4.49,  4.49,    5.69,	5.69,	5.69,	4.19,	4.19,	4.19,	2.70 ];
+var oreo = 		[0.23,	0.41,	0.44,	0.4,	0.35,	0.39,	0.39,	0.44,	0.41,	0.46,	0.43,	0.53,	0.44,	0.47,	0.53,	0.85,	0.75,	0.85,	0.76,	1.01,	0.95,	1.28,	1.25,	1.40,	1.29,	1.64,	1.22,	1.43,	1.79,	1.79,	6.46,	5.74,	1.43,	2.95,	1.79,	3.27,	3.27,	3.27,	3.27,	3.27,	3.27,	3.27,	3.27,	3.27,	2.15,	2.15,	2.15,	2.15,	3.43,	3.43,	3.43,	3.43,	4.26,	4.62,	4.62,	4.62,	4.62,	2.88];
 
 // years
 var chosenitem = coke;
@@ -63,17 +67,20 @@ function draw(){
         var chosenprice =coke;
         var yscaler = .40
         var yscaleri = 250;
+        var itemstat = "Price of a Bottle of Coca Cola ($)";
       }if(state == 255){
         line(xdimcornL, yl, xdimcornR, yl);
         var chosenprice = cflakes
         var yscaler = 5.6
-        var yscaleri = 265;
+        var yscaleri = 258;
+        var itemstat = "Price of a Serving of Corn Flakes ($)";
        // chosenitem = cflakes;
       }if(state == 2){
         line(xdimoreoL, yl, xdimoreoR, yl);
         var chosenprice = oreo;
         var yscaler = 6.46
-        var yscaleri = 250;
+        var yscaleri = 263.5;
+        var itemstat = "Price of a Pack of Oreos ($)";
         //chosenitem = oreo;
       }
 
@@ -83,7 +90,6 @@ function draw(){
   		time.push(num.toString());
   		timeN[i]=i;
 	}
-
 
 	if(mouseY > y-15){
   		if(mouseY < y+10){
@@ -130,7 +136,6 @@ function draw(){
     var economicstat = 'Inflation (%)';
     text(economicstat, windowWidth/leftindent, economicstatdown);
 
-    var itemstat = "Price of a Bottle of Coca Cola ($)";
     text(itemstat, windowWidth/leftindent, windowHeight-economicstatdown+subTxtSize);
 
     textSize(detailTxt);
@@ -239,7 +244,7 @@ function draw(){
     		}
     		noStroke()
             textAlign(RIGHT); textSize(subTxtSize)
-    		text("$1 in " + (Math.round(mouseper*timeN.length)+1960).toString() +" is worth $"+ Math.round((moniesN.toString())*100)/100 + " in 1960", windowWidth-windowWidth/leftindent, windowHeight-economicstatdown+subTxtSize);
+    		text("$1 in " + "1960" +" is worth $"+ Math.round((moniesN.toString())*100)/100 + " in "+(Math.round(mouseper*timeN.length)+1960).toString(), windowWidth-windowWidth/leftindent, windowHeight-economicstatdown+subTxtSize);
         	
         	textAlign(CENTER); 
         	text((Math.round(mouseper*timeN.length)+1960).toString(), windowWidth-windowWidth/leftindent-62, economicstatdown);
@@ -256,50 +261,82 @@ function draw(){
       	bottlesN = Math.round(itemprice/chosenprice[0]); 
    	}
 
+
 // right side of the page
     if (mouseX > (windowWidth/2) - leftindent-3.5) {
       yearindex = timeN.length-1;
       push()
       textAlign(RIGHT); textSize(subTxtSize); noStroke()
-     text("$1 in " + "2017" + " is worth $8.19 in 1960", windowWidth-windowWidth/leftindent, windowHeight-economicstatdown+subTxtSize);
+     text("$1 in " + "1960" + " is worth $8.19 in 2017", windowWidth-windowWidth/leftindent, windowHeight-economicstatdown+subTxtSize);
      textAlign(CENTER)
      text("2017", windowWidth-windowWidth/leftindent-62, economicstatdown);
-     moniesN =8.19;
-     bottlesN = 6;
-
+     if(state == 0){
+        moniesN =8.19;
+     	bottlesN = 6;
+      }if(state == 255){
+        moniesN =8.19;
+    	bottlesN = 16;
+      }if(state == 2){
+        moniesN =8.19;
+    	bottlesN = 20;
+      }
       pop()
     }
     if (mouseX < windowWidth/leftindent+19) {
       yearindex = timeN.length-1;
       push()
       textAlign(RIGHT); textSize(subTxtSize); noStroke()
-      text("$1 in " + "2017" + " is worth $8.19 in 1960", windowWidth-windowWidth/leftindent, windowHeight-economicstatdown+subTxtSize);
+      text("$1 in " + "1960" + " is worth $8.19 in 2017", windowWidth-windowWidth/leftindent, windowHeight-economicstatdown+subTxtSize);
       textAlign(CENTER)
       text("2017", windowWidth-windowWidth/leftindent-62, economicstatdown);
-      moniesN =8.19;
-      bottlesN = 6;
+      if(state == 0){
+        moniesN =8.19;
+     	bottlesN = 6;
+      }if(state == 255){
+        moniesN =8.19;
+    	bottlesN = 16;
+      }if(state == 2){
+        moniesN =8.19;
+    	bottlesN = 20;
+      }
       pop()
     }
     if (mouseY < economicstatdown) {
     	yearindex = timeN.length-1;
       push()
       textAlign(RIGHT); textSize(subTxtSize); noStroke()
-      text("$1 in " + "2017" + " is worth $8.19 in 1960", windowWidth-windowWidth/leftindent, windowHeight-economicstatdown+subTxtSize);
+      text("$1 in " + "1960" + " is worth $8.19 in 2017", windowWidth-windowWidth/leftindent, windowHeight-economicstatdown+subTxtSize);
       textAlign(CENTER)
       text("2017", windowWidth-windowWidth/leftindent-62, economicstatdown);
-      moniesN =8.19;
-      bottlesN = 6;
+      if(state == 0){
+        moniesN =8.19;
+     	bottlesN = 6;
+      }if(state == 255){
+        moniesN =8.19;
+    	bottlesN = 16;
+      }if(state == 2){
+        moniesN =8.19;
+    	bottlesN = 20;
+      }
       pop()
     }
     if (mouseY > windowHeight-economicstatdown-10) {
     	yearindex = timeN.length-1;
       push()
       textAlign(RIGHT); textSize(subTxtSize); noStroke()
-      text("$1 in " + "2017" + " is worth $8.19 in 1960", windowWidth-windowWidth/leftindent, windowHeight-economicstatdown+subTxtSize);
+      text("$1 in " + "1960" + " is worth $8.19 in 2017", windowWidth-windowWidth/leftindent, windowHeight-economicstatdown+subTxtSize);
       textAlign(CENTER)
       text("2017", windowWidth-windowWidth/leftindent-62, economicstatdown);
-      moniesN =8.19;
-      bottlesN = 6;
+      if(state == 0){
+        moniesN =8.19;
+     	bottlesN = 6;
+      }if(state == 255){
+        moniesN =8.19;
+    	bottlesN = 16;
+      }if(state == 2){
+        moniesN =8.19;
+    	bottlesN = 20;
+      }
       pop()
     }
     
@@ -319,8 +356,8 @@ function draw(){
     fill(255); text("$1", windowWidth-windowWidth/leftindent-moneyx2-leftindent+moneyoffsetx,windowHeight/2-10-moneyoffsety); 
 
   //bottle
-    image(bottleimg, windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-5,windowHeight/2-10+(bottleimg.height/10), bottleimg.width/bottlescaler, bottleimg.height/bottlescaler)
-    fill(color(redcolor)); text("$"+itemprice, windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler+12,windowHeight/2+45+(bottleimg.height/bottlescaler) );
+    //image(bottleimg, windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-5,windowHeight/2-10+(bottleimg.height/10), bottleimg.width/bottlescaler, bottleimg.height/bottlescaler)
+  //  fill(color(redcolor)); text("$"+itemprice, windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler+12,windowHeight/2+45+(bottleimg.height/bottlescaler) );
    	 
    	var linedivx = windowWidth-windowWidth/leftindent-moneyx2- offsetsides*2;
    	stroke(64,64,65,30); strokeWeight(2)
@@ -395,43 +432,166 @@ function draw(){
       }
 
     //bottles stacking
+    if (state ==0) {
+    	push()
+
+   		image(bottleimg, windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-5,windowHeight/2-10+(bottleimg.height/10), bottleimg.width/bottlescaler, bottleimg.height/bottlescaler)
+    	textAlign(CENTER)
+    	fill(color(redcolor)); text("$"+itemprice, windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler+12,windowHeight/2+45+(bottleimg.height/bottlescaler) );
+
+    	pop()
       for (var b = 0; b <= bottlesN-1; b++) {
         var OGheight = (OGbottleimg.height)/bottlescaler; var OGwidth = (OGbottleimg.width)/bottlescaler;
 
         var x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
-        x = x - (20 + OGwidth)*b;
+        x = x - (17 + OGwidth)*b;
         var y = windowHeight/2+(bottleimg.height/10) - 10;
 
        // var x = windowWidth/2+ (offsetsides*9.5)+OGwidth+((b-0)*(OGwidth+10));
        // var y = windowHeight/2+10+ OGheight +(0*(OGheight+10));
 
-        if(b >=9){
-          var j = 9;
-          var y = y + OGheight + 5;
-          var x = x - ((OGwidth +5)*(j-b));
+        if(b >=8){
+          var j = 8;
+          y = y + OGheight + 5;
+          x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
+          x = x - ((OGwidth +17)*(b-j));
         }
-        if(b >=18){
-          var j = 18;
-          y = y + ((OGheight + 5)*2)
-          x = x - (((OGwidth +5)*(j-b))*2);
+        if(b >=16){
+          var j = 16;
+          y = y + (OGheight + 5);
+          x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
+          x = x - ((OGwidth +17)*(b-j));        }
+        if(b >=24){
+          var j = 24;
+          y = y + (OGheight + 5);
+          x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
+          x = x - ((OGwidth +17)*(b-j));
         }
-        if(b >=27){
-          var j = 27;
-          y = y + ((OGheight + 5)*3)
-          x = x - (((OGwidth +5)*(j-b))*3);
+        if(b >=32){
+          var j = 32;
+          y = y + (OGheight + 5);
+          x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
+          x = x - ((OGwidth +17)*(b-j));
         }
-        if(b >=36){
-          var j = 36;
-          y = y + ((OGheight + 5)*4)
-          x = x - (((OGwidth +5)*(j-b))*4);
-        }
-        if(b >=45){
-          var j = 45;
-          y = y + ((OGheight + 5)*5)
-          x = x - (((OGwidth +5)*(j-b))*5);
+        if(b >=40){
+          var j = 40;
+          y = y + (OGheight + 5);
+          x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
+          x = x - ((OGwidth +17)*(b-j));
         }
         image(OGbottleimg, x,y, bottleimg.width/bottlescaler, bottleimg.height/bottlescaler); 
       }
+  	}
+
+  	if (state ==255) {
+    	push()
+
+    	var cornx = 40, corny = 60; noStroke(); fill(color(redcolor)); 
+
+   		//image(bottleimg, windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-5,windowHeight/2-10+(bottleimg.height/10), bottleimg.width/bottlescaler, bottleimg.height/bottlescaler)
+    	rect(windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-5,windowHeight/2+(bottleimg.height/10)+8, cornx,corny);
+    	textAlign(CENTER)
+    	text("$"+itemprice, windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler+12,windowHeight/2+45+(bottleimg.height/bottlescaler) );
+
+    	
+      for (var b = 0; b <= bottlesN-1; b++) {
+        var OGheight = (OGbottleimg.height)/bottlescaler; var OGwidth = (OGbottleimg.width)/bottlescaler;
+
+        var x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
+        x = x - (27 + OGwidth)*b;
+        var y = windowHeight/2+(bottleimg.height/10) - 10;
+
+        if(b >=7){
+          var j = 7;
+          y = y + OGheight - 17;
+          x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
+          x = x - ((OGwidth +27)*(b-j));
+        }
+        if(b >=14){
+          var j = 14;
+          y = y + OGheight - 17;
+          x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
+          x = x - ((OGwidth +27)*(b-j));        }
+        if(b >=21){
+          var j = 21;
+          y = y + OGheight - 17;
+          x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
+          x = x - ((OGwidth +27)*(b-j));
+        }
+        if(b >=32){
+          var j = 32;
+          y = y + OGheight - 17;
+          x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
+          x = x - ((OGwidth +27)*(b-j));
+        }
+        if(b >=40){
+          var j = 40;
+          y = y + OGheight - 17;
+          x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-2 - (offsetsides*4)-OGwidth;
+          x = x - ((OGwidth +27)*(b-j));
+        }
+        //image(cerealimg, x,y, bottleimg.width/bottlescaler, bottleimg.height/bottlescaler); 
+        rect(x,y,cornx, corny)
+      }
+      pop()
+  	}
+
+  	if (state ==2) {
+    	push()
+
+   		//image(bottleimg, windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler-5,windowHeight/2-10+(bottleimg.height/10), bottleimg.width/bottlescaler, bottleimg.height/bottlescaler)
+    	fill(color(redcolor)); var oreoc = 50; noStroke();
+    	ellipse(windowWidth-windowWidth/leftindent-oreoc-13, windowHeight/2+(bottleimg.height/10+35), oreoc, oreoc)
+    	textAlign(CENTER)
+    	text("$"+itemprice, windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/bottlescaler+12,windowHeight/2+45+(bottleimg.height/bottlescaler) );
+    	oreoc =45;
+    	
+      for (var b = 0; b <= bottlesN-1; b++) {
+      	var oreoscaler = 5;
+        var OGheight = (oreoimg.height)/oreoscaler; var OGwidth = (oreoimg.width)/oreoscaler;
+
+        var x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/oreoscaler-4 - (offsetsides)-OGwidth;
+        x = x - (2+ OGwidth)*b;
+        var y = windowHeight/2+(bottleimg.height/10) +5;
+
+       // var x = windowWidth/2+ (offsetsides*9.5)+OGwidth+((b-0)*(OGwidth+10));
+       // var y = windowHeight/2+10+ OGheight +(0*(OGheight+10));
+
+        if(b >=6){
+          var j = 6;
+       	  x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/oreoscaler-4 - (offsetsides)-OGwidth;
+          x = x - (2+ OGwidth)*(b-j);
+          y = y + (OGheight + 23);
+        }
+        if(b >=12){
+          var j = 12;
+       	  x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/oreoscaler-4 - (offsetsides)-OGwidth;
+          x = x - (2+ OGwidth)*(b-j);
+          y = y + (OGheight + 23);
+             }
+        if(b >=18){
+          var j = 18;
+       	  x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/oreoscaler-4 - (offsetsides)-OGwidth;
+          x = x - (2+ OGwidth)*(b-j);
+          y = y + (OGheight + 23);
+        }
+        if(b >=24){
+          var j = 24;
+       	  x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/oreoscaler-4 - (offsetsides)-OGwidth;
+          x = x - (2+ OGwidth)*(b-j);
+          y = y + (OGheight + 23);
+        }
+        if(b >=40){
+          var j = 40;
+       	  x = windowWidth-windowWidth/leftindent-moneyx2-leftindent+bottleimg.width/oreoscaler-4 - (offsetsides)-OGwidth;
+          x = x - (2+ OGwidth)*(b-j);
+          y = y + (OGheight + 23);
+        }
+        //image(oreoimg, x,y, bottleimg.width/oreoscaler*2, bottleimg.height/oreoscaler); 
+       	ellipse(x,y,oreoc,oreoc)
+      }
+      pop()
+  	}
 
   }
 
