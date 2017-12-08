@@ -7,6 +7,7 @@ var thick = 36;
 var m = 0;
 var k = 0;
 var o = 0;
+var h;
 
 function setup() {
   createCanvas(500, 500);
