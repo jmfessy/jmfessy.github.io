@@ -147,8 +147,15 @@ function draw(){
 
     textAlign(CENTER); textSize(subTxtSize);
 //    text("19NA", windowWidth-windowWidth/leftindent-62, economicstatdown);
+
+
+	///HEHREHEHEHHREHE____-------------------------------------------------------
+
     var xthi =   windowWidth-windowWidth/leftindent-moneyx2-(leftindent*5.5)+5;
-    text("1960", xthi, economicstatdown);
+    text("1960", windowWidth-windowWidth/leftindent-62, economicstatdown);
+
+    	///HEHREHEHEHHREHE____-------------------------------------------------------
+
 
     // PUT IN an "If" statement about the line underneath and what item stat you're using
 
@@ -247,7 +254,7 @@ function draw(){
     		text("$1 in " + "1960" +" is worth $"+ Math.round((moniesN.toString())*100)/100 + " in "+(Math.round(mouseper*timeN.length)+1960).toString(), windowWidth-windowWidth/leftindent, windowHeight-economicstatdown+subTxtSize);
         	
         	textAlign(CENTER); 
-        	text((Math.round(mouseper*timeN.length)+1960).toString(), windowWidth-windowWidth/leftindent-62, economicstatdown);
+        	text((Math.round(mouseper*timeN.length)+1960).toString(), xthi, economicstatdown);
         }
       }
     }
@@ -269,7 +276,7 @@ function draw(){
       textAlign(RIGHT); textSize(subTxtSize); noStroke()
      text("$1 in " + "1960" + " is worth $8.19 in 2017", windowWidth-windowWidth/leftindent, windowHeight-economicstatdown+subTxtSize);
      textAlign(CENTER)
-     text("2017", windowWidth-windowWidth/leftindent-62, economicstatdown);
+     text("2017", xthi, economicstatdown);
      if(state == 0){
         moniesN =8.19;
      	bottlesN = 6;
@@ -288,7 +295,7 @@ function draw(){
       textAlign(RIGHT); textSize(subTxtSize); noStroke()
       text("$1 in " + "1960" + " is worth $8.19 in 2017", windowWidth-windowWidth/leftindent, windowHeight-economicstatdown+subTxtSize);
       textAlign(CENTER)
-      text("2017", windowWidth-windowWidth/leftindent-62, economicstatdown);
+     text("2017", xthi, economicstatdown);
       if(state == 0){
         moniesN =8.19;
      	bottlesN = 6;
@@ -307,7 +314,7 @@ function draw(){
       textAlign(RIGHT); textSize(subTxtSize); noStroke()
       text("$1 in " + "1960" + " is worth $8.19 in 2017", windowWidth-windowWidth/leftindent, windowHeight-economicstatdown+subTxtSize);
       textAlign(CENTER)
-      text("2017", windowWidth-windowWidth/leftindent-62, economicstatdown);
+     text("2017", xthi, economicstatdown);
       if(state == 0){
         moniesN =8.19;
      	bottlesN = 6;
@@ -326,7 +333,7 @@ function draw(){
       textAlign(RIGHT); textSize(subTxtSize); noStroke()
       text("$1 in " + "1960" + " is worth $8.19 in 2017", windowWidth-windowWidth/leftindent, windowHeight-economicstatdown+subTxtSize);
       textAlign(CENTER)
-      text("2017", windowWidth-windowWidth/leftindent-62, economicstatdown);
+     text("2017", xthi, economicstatdown);
       if(state == 0){
         moniesN =8.19;
      	bottlesN = 6;
